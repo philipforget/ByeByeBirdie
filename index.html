@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title></title>
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <link rel="stylesheet" href="media/css/style.css">
+  
+    <link href='http://fonts.googleapis.com/css?family=Reenie+Beanie' rel='stylesheet' type='text/css'>
+
+  <script src="media/js/plugins/modernizr-2.0.6.min.js"></script>
+</head>
+
+<body>
+
+  <div id="container">
+    <header>
+        <h1>Bye Bye Birdie</h1>
+    </header>
+    <div id="login" role="main">
+        <div id="username">
+            <form>
+                <input type="text" placeholder="enter your twitter username"/>
+                <input type="submit" value="Next" />
+            </form>
+        </div>
+        <div id="password">
+            <figure></figure>
+            <form>
+                <input type="password" placeholder="enter your password"/>
+                <input type="submit" value="Login" />
+            </form>
+            <a id="undo" href="#">That's Not Me.</a>
+        </div>
+    </div>
+    <footer>
+
+    </footer>
+  </div> <!--! end of #container -->
+
+
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script>window.jQuery || document.write('<script src="media/js/jquery.js"><\/script>')</script>
+  <script src="media/js/bye.js"></script>
+
+  <script> // Change UA-XXXXX-X to be your site's ID
+    window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];
+    Modernizr.load({
+      load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
+    });
+  </script>
+
+</body>
+</html>
