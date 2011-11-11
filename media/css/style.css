@@ -46,7 +46,6 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-
 header{
     margin: 20px auto 0;
     width: 90%;
@@ -60,9 +59,9 @@ h1{
 }
 #login{
     background: url("../images/shadow_bg.png") no-repeat scroll 50% 0 transparent;
-    margin-top: 75px;
-    min-height: 85px;
-    padding-top: 12px;
+    height: 85px;
+    margin-top: 100px;
+    padding-top: 13px;
     width: 100%;
 }
 #login form{
@@ -71,22 +70,24 @@ h1{
     padding: 0.3em .3em .2em;
 }
 #password figure{
-    margin-top: -50px;
+    float: left;
     overflow: hidden;
 }
 #password figure img{
     border-radius: 3px;
     float: left;
-    margin: 0 1em 0.15em 0;
+    height: 31px;
+    width: 31px;
 }
 #password figcaption{
     font-family: 'Reenie Beanie', cursive;
-    font-size: 1.2em;
+    font-size: 1.75em;
 }
 #username, #password{
     width: 27em;
     margin: 0 auto;
     position: relative;
+    text-align: center;
 }
 #username{
     left: 0px; 
@@ -100,10 +101,17 @@ input{
     font-weight: bold;
     padding: 0.5em;
 }
-input[type='text'], input[type='password']{
+input[type='text']{
     min-width: 70%;
     box-shadow: 1px 3px 3px #D6D6D6 inset;
     border:none;
+}
+input[type='password']{
+    border:none;
+    box-shadow: 1px 3px 3px #D6D6D6 inset;
+    float: left;
+    margin-left: 0.4em;
+    min-width: 61%;
 }
 input[type='submit']{
     background: rgb(155,217,231);
@@ -122,4 +130,13 @@ input[type='submit']{
     padding: 0.46em 1.85em;
     text-shadow: 0 1px #B5DFE7;
     width:25%;
+}
+#password input[type='submit']{margin-left: .2em;}
+a#undo{
+    color: #002F3F;
+    display: block;
+    font-size: 0.8em;
+    font-weight: bold;
+    margin-top: 10px;
+    text-decoration: none;
 }

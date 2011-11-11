@@ -7,7 +7,6 @@ Bye.admin = {
 	init: function ()
 	{   
         $('#username').submit(Bye.admin.effects.slideChange);
-        $('#undo').live('click', Bye.admin.effects.undoSlide);
 	},
     effects: 
     {
@@ -17,13 +16,14 @@ Bye.admin = {
             .animate({left: '+=2000'}, 500)
             .hide(function(){
                 $('#password').show().animate({left: '0'}, 90);
+                $('#undo').live('click', Bye.admin.effects.undoSlide);
             });
             
-            //gets the picture
+            //gets the username from the first form value
             var user = $('#username input[type="text"]').val();
             
             // injects avatar picture and text. Might want to randomize an array of text for fun later.
-            $('#password figure').prepend('<img src="http://api.twitter.com/1/users/profile_image/' + user + '"/><figcaption>So this is what you look like.  Ok Ok. Ill play along. If this is you, whats your secret passcode?</figcaption>');
+            $('#password figure').prepend('<img src="http://api.twitter.com/1/users/profile_image/' + user + '"/>');
             
             return false;
         },
