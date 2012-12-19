@@ -89,7 +89,9 @@ TEMPLATE_DIRS = (
     APP_DIR,
 )
 
-AUTHENTICATION_BACKENDS = ('social_auth.backends.twitter.TwitterBackend')
+AUTHENTICATION_BACKENDS = (
+    'social_auth.backends.twitter.TwitterBackend',
+)
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',

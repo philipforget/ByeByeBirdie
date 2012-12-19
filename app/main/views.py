@@ -1,5 +1,6 @@
 import logging
 
+from annoying.decorators import render_to
 from django.shortcuts import render
 
 
@@ -7,13 +8,10 @@ logger = logging.getLogger(__name__)
 
 
 
+@render_to('home.html')
 def home(request):
     """Homepage"""
-    if not request.user.is_authenticated():
-        return render(request, 'home.html')
-    else:
-        # dafuq we do here?
-        pass
+    return {'request': request}
 
 
 

@@ -38,6 +38,10 @@
 	</header>
 	
 	<section id="main">
+      {% if request.user.is_authenticated %}
+      <a href="{% url 'socialauth_disconnect' 'twitter'%}">Logout</a>
+
+      {% endif %}
       {% block content %}{% endblock %}
 	</section><!-- /main -->
 
