@@ -1,5 +1,10 @@
 # Django settings for app project.
 
+import os
+
+PROJECT_DIR = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), '..'))
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -86,6 +91,11 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
 #     'django.template.loaders.eggs.Loader',
+)
+
+TEMPLATE_DIRS = (
+    os.path.join(PROJECT_DIR, 'templates'),
+    PROJECT_DIR,
 )
 
 AUTHENTICATION_BACKENDS = ('social_auth.backends.twitter.TwitterBackend')
