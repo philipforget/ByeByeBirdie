@@ -46,6 +46,9 @@
                 currentSelection = el;
             }
 
+            ///////
+            /////// BUILDING AUTOCOMPLETE RESULTS HERE
+            ///////
             function buildResults(resultObjects, sFilterTxt) {
                 sFilterTxt = "(" + sFilterTxt + ")";
                 var bOddRow = true,
@@ -58,9 +61,9 @@
                     // set vars for data object and do something with them
                     var item = $('<div />'),
                         id = resultObjects[i].id,
-                        username = resultObjects[i].username,
-                        twitterHandle = resultObjects[i].twitterHandle,
-                        userImage = resultObjects[i].image;
+                        username = resultObjects[i].name,
+                        twitterHandle = resultObjects[i].username,
+                        userImage = resultObjects[i].avatar_url;
 
                     // make letters enter bold
                     if (settings.highlightMatches === true) {
