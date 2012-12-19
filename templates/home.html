@@ -1,3 +1,8 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if request.user.is_authenticated %}
 <div id="unfollow" class="unfollow-form">
 	<form>
 		<input type="text" placeholder="who are you unfollowing?"/>
@@ -5,3 +10,8 @@
 	</form>
 	<span class="shadow-bottom large"></span>
 </div>
+
+{% else %}
+<a href="{% url 'socialauth_begin' 'twitter'%}">Sign in with Twitter</a>
+{% endif %}
+{% endblock %}
