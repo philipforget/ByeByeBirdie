@@ -45,6 +45,11 @@ table {
 a {
   cursor: pointer; }
 
+form {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
 input {
   border-radius: 2px;
   font-size: .875em;
@@ -88,6 +93,53 @@ input {
     padding: 0.46em 1.85em;
     text-shadow: 0 1px #B5DFE7;
     width: 25%; }
+
+textarea {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  resize: none;
+  height: 125px;
+  outline: none; }
+
+.button-style {
+  background: #9bd9e7;
+  background: -moz-linear-gradient(top, #9bd9e7 0%, #85d1e2 3%, #74c4da 45%, #54aac9 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #9bd9e7), color-stop(3%, #85d1e2), color-stop(45%, #74c4da), color-stop(100%, #54aac9));
+  background: -webkit-linear-gradient(top, #9bd9e7 0%, #85d1e2 3%, #74c4da 45%, #54aac9 100%);
+  background: -o-linear-gradient(top, #9bd9e7 0%, #85d1e2 3%, #74c4da 45%, #54aac9 100%);
+  background: -ms-linear-gradient(top, #9bd9e7 0%, #85d1e2 3%, #74c4da 45%, #54aac9 100%);
+  background: linear-gradient(top, #9bd9e7 0%, #85d1e2 3%, #74c4da 45%, #54aac9 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#9bd9e7', endColorstr='#54aac9',GradientType=0 );
+  box-shadow: inset 0px 1px 0px whitesmoke;
+  -webkit-box-shadow: inset 0px 1px 0px whitesmoke;
+  -moz-box-shadow: inset 0px 1px 0px whitesmoke;
+  -o-box-shadow: inset 0px 1px 0px whitesmoke;
+  border-bottom: 1px solid #000;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  font-weight: bold;
+  padding: 0.46em 1.85em;
+  text-shadow: 0 1px #B5DFE7;
+  width: 25%;
+  border-radius: 2px;
+  font-size: .875em;
+  padding: 0.4em .8em .5em;
+  float: right; }
+  .button-style.gray {
+    background: #ffffff;
+    background: -moz-linear-gradient(top, white 0%, #e5e5e5 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #e5e5e5));
+    background: -webkit-linear-gradient(top, white 0%, #e5e5e5 100%);
+    background: -o-linear-gradient(top, white 0%, #e5e5e5 100%);
+    background: -ms-linear-gradient(top, white 0%, #e5e5e5 100%);
+    background: linear-gradient(to bottom, white 0%, #e5e5e5 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 );
+    margin-right: 5px;
+    text-shadow: 0 1px white;
+    padding: 0.4em .5em .5em; }
 
 .jsonSuggestResults {
   position: absolute;
@@ -143,6 +195,24 @@ input {
         .jsonSuggestResults .resultItem p.twitterHandle:before {
           content: '@'; }
 
+#user-list {
+  width: 40%;
+  margin: 0 auto;
+  min-width: 480px; }
+  #user-list #unfollow-list {
+    margin-top: 30px;
+    border-top: 1px dotted #ccc; }
+    #user-list #unfollow-list li {
+      padding: 15px 0;
+      border-bottom: 1px dotted #ccc;
+      overflow: hidden; }
+      #user-list #unfollow-list li img {
+        float: left;
+        border-radius: 4px; }
+      #user-list #unfollow-list li .right-profile {
+        float: left;
+        margin-left: 40px; }
+
 body {
   background: url(../images/bg.png);
   line-height: 1;
@@ -181,7 +251,14 @@ header#small-header {
     border-radius: 3px;
     padding: 0.3em .3em .2em;
     width: 27em;
-    margin: 0 auto; }
+    margin: 0 auto;
+    overflow: hidden; }
+    #main form#unfollow-message {
+      width: 100%; }
+      #main form#unfollow-message .button-style {
+        width: 40%; }
+        #main form#unfollow-message .button-style.gray {
+          width: 20%; }
 
 #username {
   width: 31em;

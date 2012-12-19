@@ -1,19 +1,16 @@
 App.Router = Backbone.Router.extend({
 	routes : {
 		'' : 'home',
-		'login': 'login',
-		'unfollow': 'unfollow'
+		':username': 'user'
 	},
 
 	home: function() {
-		
+		new App.HomeView();
 	},
 
-	login: function() {
-		new App.LoginView();
-	},
-
-	unfollow: function() {
-		new App.UnfollowView();
+	user: function(username) {
+		new App.UserView({
+			username: username
+		});
 	}
 });

@@ -1,3 +1,8 @@
+import os
+
+PROJECT_DIR = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), '../..'))
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -86,6 +91,11 @@ TEMPLATE_LOADERS = (
 #     'django.template.loaders.eggs.Loader',
 )
 
+TEMPLATE_DIRS = (
+    os.path.join(PROJECT_DIR, 'templates'),
+    PROJECT_DIR,
+)
+
 AUTHENTICATION_BACKENDS = ('social_auth.backends.twitter.TwitterBackend')
 
 MIDDLEWARE_CLASSES = (
@@ -102,12 +112,6 @@ ROOT_URLCONF = 'urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'wsgi.application'
-
-TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-)
 
 INSTALLED_APPS = (
     'django.contrib.auth',

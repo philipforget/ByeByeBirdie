@@ -1,0 +1,26 @@
+#user-list {
+	width: 40%;
+	margin: 0 auto;
+	min-width: 480px;
+
+	#unfollow-list {
+		margin-top: 30px;
+		border-top: 1px dotted #ccc;
+
+		li {
+			padding: 15px 0;
+			border-bottom: 1px dotted #ccc;
+			overflow: hidden;
+
+			img {
+				float: left;
+				border-radius: 4px;
+			}
+
+			.right-profile {
+				float: left;
+				margin-left: 40px;
+			}
+		}
+	}
+}

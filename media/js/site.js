@@ -1,8 +1,8 @@
 App = {
 	start: function() {
 		TPL.loadTemplates([
-			'login',
-			'unfollow'	    
+			'home',
+			'user'	    
 		], function() {
 			new App.Router();
 			Backbone.history.start();
