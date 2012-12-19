@@ -1,5 +1,3 @@
-# Django settings for app project.
-
 import os
 
 PROJECT_DIR = os.path.abspath(
