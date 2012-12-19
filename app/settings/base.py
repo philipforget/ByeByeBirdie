@@ -119,9 +119,10 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
-    'main',
     'social_auth',
     'account',
+    'api',
+    'main',
 )
 
 # A sample logging configuration. The only tangible logging

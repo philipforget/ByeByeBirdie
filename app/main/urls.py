@@ -1,9 +1,11 @@
 from django.conf.urls.defaults import patterns, url
 
+from . import views
 
 
-urlpatterns = patterns('main.views',
-    url(r'^$', 'home', name='home'),
-    url(r'^logout$', 'logout', name='logout'),
-    url(r'^(?P<username>\w+)$', 'user_page', name='user_page'),
+
+urlpatterns = patterns('',
+    url(r'^$', views.home, name='home'),
+    url(r'^logout$', views.logout, name='logout'),
+    url(r'^(?P<username>\w+)$', views.user_page, name='user_page'),
 )
