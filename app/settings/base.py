@@ -3,6 +3,8 @@ import os
 PROJECT_DIR = os.path.abspath(
     os.path.join(os.path.dirname(__file__), '../..'))
 
+REPO_ROOT = os.path.join(PROJECT_DIR, '..')
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -95,7 +97,9 @@ TEMPLATE_DIRS = (
     PROJECT_DIR,
 )
 
-AUTHENTICATION_BACKENDS = ('social_auth.backends.twitter.TwitterBackend')
+AUTHENTICATION_BACKENDS = (
+    'social_auth.backends.twitter.TwitterBackend',
+)
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',

@@ -1,5 +1,6 @@
 -e git+https://github.com/django/django.git@034c3551188189cc0faa9a9ccc88a191c855aa45#egg=Django-dev
 distribute==0.6.27
+django-annoying==0.7.6
 django-social-auth==0.7.12
 ipython==0.13.1
 South==0.7.6
