@@ -5,6 +5,8 @@
 
 @import 'plugins/autocomplete';
 
+@import 'pages/userList';
+
 body {
     background: url(../images/bg.png);
 	line-height: 1;
@@ -47,6 +49,19 @@ header {
         padding: 0.3em .3em .2em;
         width: 27em;
         margin: 0 auto;
+        overflow: hidden;
+
+        &#unfollow-message {
+            width: 100%;
+
+            .button-style {
+                width: 40%;
+
+                &.gray {
+                    width: 20%;
+                }
+            }
+        }
     }
 }
 

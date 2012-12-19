@@ -9,6 +9,8 @@ App.Router = Backbone.Router.extend({
 	},
 
 	user: function(username) {
-		new App.UserView({username: username});
+		new App.UserView({
+			username: username
+		});
 	}
 });
