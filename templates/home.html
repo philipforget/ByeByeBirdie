@@ -3,6 +3,7 @@
 {% block content %}
 
 {% if request.user.is_authenticated %}
+
 <div id="unfollow" class="unfollow-form">
 	<form>
 		<input type="text" placeholder="who are you unfollowing?"/>
@@ -12,6 +13,15 @@
 </div>
 
 {% else %}
-<a href="{% url 'socialauth_begin' 'twitter'%}">Sign in with Twitter</a>
+
+<div id="login">
+	<div class="home-left">
+		<p>Leave a message when you unfollow someone. Let em' know why your flying the coop.</p>
+	</div>
+	<div class="home-right">
+		<a class"button-style">Login with Twitter</a>
+	</div>
+</div>
+
 {% endif %}
 {% endblock %}
