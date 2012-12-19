@@ -1,4 +1,4 @@
-App.UnfollowView = Backbone.View.extend({
+App.HomeView = Backbone.View.extend({
 	el: '#main',
 
 	events: {
@@ -6,7 +6,7 @@ App.UnfollowView = Backbone.View.extend({
 	},
 	
 	initialize: function() {
-		this.template = _.template(TPL.get('unfollow'));
+		this.template = _.template(TPL.get('home'));
 
 		this.render();
 	},
