@@ -6,14 +6,11 @@ App.HomeView = Backbone.View.extend({
 	},
 	
 	initialize: function() {
-		this.template = _.template(TPL.get('home'));
-
+        //this.template = _.template(TPL.get('home'));
 		this.render();
 	},
 
 	render: function() {
-		$(this.el).empty();
-		$(this.el).hide().append(this.template()).fadeIn();
 
 		return this;
 	},

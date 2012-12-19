@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+
+	<!-- STYLE -->
+	<link rel="stylesheet" href="media/css/style.css">
+
+	<!-- DEPENDENCIES -->
+    <script src="media/js/lib/jquery-1.8.2.js"></script>
+    <script src="media/js/lib/underscore-1.4.2.js"></script>
+    <script src="media/js/lib/backbone-0.9.2.js"></script>
+
+    <!-- LAUNCH -->
+	<script src="media/js/site.js"></script>
+
+	<!-- HELPERS -->
+	<script src="media/js/utils.js"></script>
+	<script src="media/js/plugins/plugins.js"></script>
+
+	<!-- ROUTER -->
+	<script src="media/js/routers/router.js"></script>
+
+	<!-- MODELS -->
+	<script src="media/js/models/tmpModel.js"></script>
+
+	<!-- VIEWS -->
+	<script src="media/js/views/homeView.js"></script>
+	<script src="media/js/views/userView.js"></script>
+
+</head>
+
+<body>
+
+<div id="container">
+	<header id="large-header">
+		<h1>Bye Bye Birdie</h1>
+	</header>
+	
+	<section id="main">
+      {% if request.user.is_authenticated %}
+          <a href="{% url 'logout' %}">Logout</a>
+      {% endif %}
+      {% block content %}{% endblock %}
+	</section><!-- /main -->
+
+	<footer>
+
+	</footer>
+</div> <!-- /container -->
+
+  <script>window.jQuery || document.write('<script src="media/js/lib/jquery-1.8.2.js"><\/script>')</script>
+
+</body>
+</html>

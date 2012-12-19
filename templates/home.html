@@ -1,3 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if request.user.is_authenticated %}
+
+<div id="unfollow" class="unfollow-form">
+	<form>
+		<input type="text" placeholder="who are you unfollowing?"/>
+		<input type="submit" value="Unfollow" />
+	</form>
+	<span class="shadow-bottom large"></span>
+</div>
+
+{% else %}
+
 <div id="login">
 	<div class="home-left">
 		<p>Leave a message when you unfollow someone. Let em' know why your flying the coop.</p>
@@ -7,10 +23,5 @@
 	</div>
 </div>
 
-<div id="unfollow" class="unfollow-form">
-	<form>
-		<input type="text" placeholder="who are you unfollowing?"/>
-		<input type="submit" value="Unfollow" />
-	</form>
-	<span class="shadow-bottom large"></span>
-</div>
+{% endif %}
+{% endblock %}
