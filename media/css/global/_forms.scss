@@ -1,0 +1,34 @@
+input {
+    border-radius: 2px;
+    font-size: .875em;
+    padding: 0.4em .5em .5em;
+    outline: none;
+    
+    &[type='text'] {
+        min-width: 69%;
+        @include box-shadow(1px, 3px, 3px, #d6d6d6, true);
+        border:none;
+    }
+
+    &[type='password'] {
+        border:none;
+        box-shadow: 1px 3px 3px #D6D6D6 inset;
+        @include box-shadow(0px, 1px, 0px, #F5F5F5, true);
+        float: left;
+        margin-left: 0.4em;
+        min-width: 61%;
+    }
+
+    &[type='submit'] {
+        @include grad-blue;
+        @include box-shadow(0px, 1px, 0px, #F5F5F5, true);
+        border-bottom: 1px solid #000;
+        border-top: none;
+        border-right: none;
+        border-left: none;
+        font-weight: bold;
+        padding: 0.46em 1.85em;
+        text-shadow: 0 1px #B5DFE7;
+        width:25%;
+    }
+}
