@@ -8,6 +8,6 @@ admin.autodiscover()
 
 
 urlpatterns = patterns('',
-    url(r'^$', include('main.urls')),
-    url(r'^auth/', include('social_auth.urls')),
+    url(r'^$', include('main.urls', namespace='main')),
+    url(r'^auth/', include('social_auth.urls', namespace='social')),
 )
