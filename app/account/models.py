@@ -3,8 +3,9 @@ from django.contrib.auth.models import AbstractUser
 
 
 class CustomUser(AbstractUser):
-    handle = models.CharField(max_length=40)
+    name = models.CharField(max_length=40)
     is_opted_out = models.BooleanField(default=False)
+    is_banned = models.BooleanField(default=False)
     has_authed_in = models.BooleanField(default=False)
 
 
