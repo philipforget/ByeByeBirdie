@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+from social_auth.models import UserSocialAuth
+
 
 class CustomUser(AbstractUser):
     name = models.CharField(max_length=40)
@@ -23,3 +25,16 @@ class CustomUser(AbstractUser):
 
         """
         pass
+
+
+    @property
+    def tokens(self):
+        """Get tokens for user.
+
+        Returns a dict with keys `oauth_token` and `oauth_token_secret`.
+        """
+        try:
+            auth = UserSocialAuth.objects.get(user=self)
+        except UserSocialAuth.ObjectDoesNotExist:
+            return None
+        return auth.tokens
