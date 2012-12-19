@@ -101,7 +101,9 @@ textarea {
   width: 100%;
   resize: none;
   height: 125px;
-  outline: none; }
+  outline: none;
+  padding: .75em;
+  font-size: .875em; }
 
 .button-style {
   background: #9bd9e7;
@@ -197,10 +199,61 @@ textarea {
 
 #user-list {
   width: 40%;
-  margin: 0 auto;
+  margin: 0 auto 40px;
   min-width: 480px; }
+  #user-list #user-profile {
+    padding: 1em .75em;
+    border-radius: 15px 15px 0 0;
+    margin-bottom: -5px;
+    margin-top: -50px;
+    background: url("../images/tmp_bg.png") no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    border: 0.35em solid #002f3f;
+    border-bottom: 0;
+    overflow: hidden; }
+    #user-list #user-profile > img {
+      border-radius: 4px;
+      border: 4px solid white;
+      box-shadow: 0px 1px 2px #2C2C2C;
+      margin-bottom: 10px;
+      float: left; }
+    #user-list #user-profile .button-style {
+      float: right;
+      text-decoration: none;
+      margin-top: 1.5em;
+      color: #424242;
+      font-size: 12px;
+      text-align: center;
+      text-shadow: 1px 1px 1px white; }
+    #user-list #user-profile .middle-profile {
+      margin-left: 1em;
+      padding-top: 0.5em;
+      float: left; }
+      #user-list #user-profile .middle-profile h2 {
+        font-weight: bold;
+        font-size: 20px;
+        margin-bottom: 3px;
+        color: white;
+        text-shadow: 0px 1px 2px #2C2C2C; }
+      #user-list #user-profile .middle-profile p {
+        font-size: 14px; }
+  #user-list #unfollow-message p {
+    float: left;
+    padding: 1em .75em;
+    font-size: 12px;
+    color: #aaa;
+    font-style: italic; }
+  #user-list h3 {
+    position: relative;
+    text-transform: uppercase;
+    font-size: 11px;
+    color: #9C9C9C;
+    top: 30px; }
   #user-list #unfollow-list {
-    margin-top: 30px;
+    margin-top: 40px;
     border-top: 1px dotted #ccc; }
     #user-list #unfollow-list li {
       padding: 15px 0;
@@ -210,16 +263,23 @@ textarea {
         float: left;
         border-radius: 4px; }
       #user-list #unfollow-list li .right-profile {
-        float: left;
-        margin-left: 40px; }
+        padding-left: 60px; }
+        #user-list #unfollow-list li .right-profile h2 {
+          font-weight: bold;
+          font-size: 14px;
+          margin-bottom: 5px; }
+        #user-list #unfollow-list li .right-profile p {
+          font-family: Arial, sans-serif;
+          color: #535353;
+          font-size: 14px;
+          line-height: 1.25; }
 
 body {
   background: url(../images/bg.png);
   line-height: 1;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 300;
-  font-size: 16px;
-  overflow: hidden; }
+  font-size: 16px; }
 
 header#large-header {
   margin: 50px auto 0;
@@ -260,56 +320,47 @@ header#small-header {
         #main form#unfollow-message .button-style.gray {
           width: 20%; }
 
-#username {
-  width: 31em;
-  margin: 0 auto;
-  position: relative;
-  text-align: center;
-  left: 0px; }
-
-#password {
-  width: 31em;
-  margin: 0 auto;
-  position: relative;
-  text-align: center;
-  left: -1000em; }
-  #password input[type='submit'] {
-    margin-left: .2em; }
-  #password .undo {
-    color: #002f3f;
-    display: block;
-    font-size: 0.8em;
-    font-weight: bold;
-    margin-top: 10px;
-    text-decoration: none; }
-    #password .undo:hover {
-      color: #54aac9; }
-  #password figure img {
-    border-radius: 3px;
+#login {
+  width: 60%;
+  min-width: 480px;
+  margin: -30px auto 0; }
+  #login .home-left {
     float: left;
-    height: 29px;
-    width: 29px;
-    margin: .15em 0 0 .1em; }
-
-#login-error {
-  margin: 0 auto;
-  position: relative;
-  left: -1000em; }
-  #login-error img {
-    float: left; }
-  #login-error p {
-    padding-left: 75px; }
-    #login-error p strong {
+    width: 45%;
+    border-right: 1px solid #CCC;
+    padding-right: 45px; }
+    #login .home-left p {
+      font-size: 24px;
+      line-height: 1.2; }
+  #login .home-right {
+    float: right;
+    width: 46%;
+    margin-top: 30px; }
+    #login .home-right a {
+      background: #9bd9e7;
+      background: -moz-linear-gradient(top, #9bd9e7 0%, #85d1e2 3%, #74c4da 45%, #54aac9 100%);
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #9bd9e7), color-stop(3%, #85d1e2), color-stop(45%, #74c4da), color-stop(100%, #54aac9));
+      background: -webkit-linear-gradient(top, #9bd9e7 0%, #85d1e2 3%, #74c4da 45%, #54aac9 100%);
+      background: -o-linear-gradient(top, #9bd9e7 0%, #85d1e2 3%, #74c4da 45%, #54aac9 100%);
+      background: -ms-linear-gradient(top, #9bd9e7 0%, #85d1e2 3%, #74c4da 45%, #54aac9 100%);
+      background: linear-gradient(top, #9bd9e7 0%, #85d1e2 3%, #74c4da 45%, #54aac9 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#9bd9e7', endColorstr='#54aac9',GradientType=0 );
+      box-shadow: inset 0px 1px 0px whitesmoke;
+      -webkit-box-shadow: inset 0px 1px 0px whitesmoke;
+      -moz-box-shadow: inset 0px 1px 0px whitesmoke;
+      -o-box-shadow: inset 0px 1px 0px whitesmoke;
+      border-bottom: 1px solid #000;
+      border-top: none;
+      border-right: none;
+      border-left: none;
       font-weight: bold;
-      color: #ff7373;
-      font-style: italic; }
-    #login-error p a {
-      color: #002f3f;
-      font-weight: bold; }
-
-.move-out {
-  width: 27em;
-  margin: 0 auto; }
+      border-radius: 2px;
+      font-size: .875em;
+      float: right;
+      padding: 1em 3em;
+      color: white;
+      text-shadow: 1px 1px 0 black;
+      border-radius: 20px; }
 
 .unfollow-form {
   width: 30em;

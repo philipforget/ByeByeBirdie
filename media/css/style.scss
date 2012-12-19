@@ -13,7 +13,6 @@ body {
     font-family: $font-Helvetica;
     font-weight: 300;
     font-size: 16px;
-    overflow: hidden;
 }
 
 header {
@@ -65,78 +64,45 @@ header {
     }
 }
 
-#username {
-    width: 31em;
-    margin: 0 auto;
-    position: relative;
-    text-align: center;
-    left: 0px;
-}
+#login {
+    width: 60%;
+    min-width: 480px;
+    margin: -30px auto 0;
 
-#password {
-    width: 31em;
-    margin: 0 auto;
-    position: relative;
-    text-align: center;
-    left: -1000em;
-
-    input[type='submit'] {
-        margin-left: .2em;
-    }
-
-    .undo {
-        color: $dark-blue;
-        display: block;
-        font-size: 0.8em;
-        font-weight: bold;
-        margin-top: 10px;
-        text-decoration: none;
-
-        &:hover {
-            color: $mid-blue ;
-        }
-    }
-    
-    figure {
-        
-        img{ 
-            border-radius: 3px;
-            float: left;
-            height: 29px;
-            width: 29px;
-            margin: .15em 0 0 .1em;
-        }
-    }
-}
-
-#login-error {
-    margin: 0 auto;
-    position: relative;
-    left: -1000em;
-
-    img {
+    .home-left {
         float: left;
+        width: 45%;
+        border-right: 1px solid #CCC;
+        padding-right: 45px;
+
+        p {
+            font-size: 24px;
+            line-height: 1.2;
+        }
     }
 
-    p {
-        padding-left: 75px;
-
-        strong {
-            font-weight: bold;
-            color: $pink;
-            font-style: italic;
-        }
+    .home-right {
+        float: right;
+        width: 46%;
+        margin-top: 30px;
 
         a {
-            color: $dark-blue;
+            @include grad-blue;
+            @include box-shadow(0px, 1px, 0px, #F5F5F5, true);
+            border-bottom: 1px solid #000;
+            border-top: none;
+            border-right: none;
+            border-left: none;
             font-weight: bold;
+            border-radius: 2px;
+            font-size: .875em;
+            float: right;
+            padding: 1em 3em;
+            color: white;
+            text-shadow: 1px 1px 0 black;
+            border-radius: 20px;
         }
     }
-}
-
-.move-out {
-    width: 27em;
-    margin: 0 auto;
 }
 
 .unfollow-form {
