@@ -1,7 +1,13 @@
 import os
 
-PROJECT_DIR = os.path.abspath(
-    os.path.join(os.path.dirname(__file__), '../..'))
+# APP_DIR refers to the django app root, one level up from settings
+APP_DIR = os.path.abspath(
+    os.path.join(
+        os.path.dirname(__file__), '..'))
+
+# The repo root is one level above the app
+REPO_ROOT = os.path.abspath(
+    os.path.join(APP_DIR, '..'))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -11,18 +17,6 @@ ADMINS = (
 )
 
 MANAGERS = ADMINS
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '',                      # Or path to database file if using sqlite3.
-        # The following settings are not used with sqlite3:
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '',                      # Set to empty string for default.
-    }
-}
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -47,7 +41,7 @@ USE_L10N = True
 # If you set this to False, Django will not use timezone-aware datetimes.
 USE_TZ = True
 
-MEDIA_ROOT = os.path.join(PROJECT_DIR, '')
+MEDIA_ROOT = os.path.join(APP_DIR, '')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -58,7 +52,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-#STATIC_ROOT = os.path.join(PROJECT_DIR, 'media')
+#STATIC_ROOT = os.path.join(APP_DIR, 'media')
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
@@ -69,7 +63,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.join(PROJECT_DIR, 'media'),
+    os.path.join(APP_DIR, 'media'),
 )
 
 # List of finder classes that know how to find static files in
@@ -91,8 +85,8 @@ TEMPLATE_LOADERS = (
 )
 
 TEMPLATE_DIRS = (
-    os.path.join(PROJECT_DIR, 'templates'),
-    PROJECT_DIR,
+    os.path.join(APP_DIR, 'templates'),
+    APP_DIR,
 )
 
 AUTHENTICATION_BACKENDS = ('social_auth.backends.twitter.TwitterBackend')
