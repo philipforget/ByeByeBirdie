@@ -1,13 +1,11 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 
-class CustomUser(models.AbstractBaseUser):
-    username = models.CharField(max_length=15, unique=True, db_index=True)
+class CustomUser(AbstractUser):
     handle = models.CharField(max_length=40)
     is_opted_out = models.BooleanField(default=False)
     has_authed_in = models.BooleanField(default=False)
-
-    USERNAME_FIELD = 'identifier'
 
 
     @property

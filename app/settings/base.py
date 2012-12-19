@@ -108,6 +108,9 @@ ROOT_URLCONF = 'urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'wsgi.application'
 
+AUTH_USER_MODEL = 'account.CustomUser'
+SOCIAL_AUTH_USER_MODEL = AUTH_USER_MODEL
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -115,12 +118,10 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Uncomment the next line to enable the admin:
-     'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
+    'django.contrib.admin',
     'main',
-    'social_auth'
+    'social_auth',
+    'account',
 )
 
 # A sample logging configuration. The only tangible logging
