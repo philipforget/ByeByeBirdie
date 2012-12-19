@@ -9,8 +9,6 @@ APP_DIR = os.path.abspath(
 REPO_ROOT = os.path.abspath(
     os.path.join(APP_DIR, '..'))
 
-REPO_ROOT = os.path.join(PROJECT_DIR, '..')
-
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
