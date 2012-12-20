@@ -167,6 +167,9 @@ class CustomUser(AbstractUser):
         created, user_to_unfollow = \
             CustomUser.objects.get_or_create_by_username(username_to_unfollow)
 
+        if user_to_unfollow.is_opted_out or self.is_opted_out:
+            raise ValueError("Cannot unfollow opted out users")
+
         return Unfollow.create_unfollow(
             user = user_to_unfollow,
             unfollowed_by = self,
