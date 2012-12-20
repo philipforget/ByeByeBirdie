@@ -47,6 +47,10 @@ def user_page(request, username):
         try:
             existing_unfollow = Unfollow.objects.get(
                 user=user, unfollowed_by=request.user)
+
+            # Dont show your own in the list
+            unfollows = unfollows.exclude(id=existing_unfollow.id)
+
         except Unfollow.DoesNotExist:
             pass
 
