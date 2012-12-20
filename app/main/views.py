@@ -30,10 +30,16 @@ def user_page(request, username):
 
     # Looking at our own unfollows (people who have unfollowed us)
     if request.user.username == username:
+        user = request.user
         template = 'me.html'
+        if user.is_opted_out:
+            return {
+                'TEMPLATE': template,
+                'user': user,
+            }
+
         unfollows = request.user.get_and_cache_list(
             'unfollowed', force_refresh=force_refresh)
-        user = request.user
 
     else:
         template = 'user.html'
@@ -43,6 +49,12 @@ def user_page(request, username):
                 .objects.get_or_create_by_username(username)
         except ValueError:
             raise http.Http404
+
+        if user.is_opted_out:
+            return {
+                'TEMPLATE': template,
+                'user': user,
+            }
 
         if request.method == 'POST':
             form = UnfollowForm({
@@ -91,7 +103,11 @@ def user_page(request, username):
 @login_required
 @render_to('mine.html')
 def mine(request):
+    if request.user.is_opted_out:
+        return {}
+
     force_refresh = request.GET.has_key('force_refresh')
+
     return {
         "unfollows": request.user.get_and_cache_list(
             'mine', force_refresh=force_refresh)
