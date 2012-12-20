@@ -11,6 +11,24 @@ class Unfollow(models.Model):
     public = models.BooleanField(default=True)
     anonymous = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True)
+    is_active = models.BooleanField(default=True)
+
+
+    @classmethod
+    def create_unfollow(cls, user, unfollowed_by, message):
+        # Deactivate any existing active unfollows between these users
+        cls.objects.filter(
+            user = user,
+            unfollowed_by = unfollowed_by,
+            is_active = True).update(
+                is_active=False)
+
+        return cls.objects.create(
+            user = user,
+            unfollowed_by = unfollowed_by,
+            # Lets go ahead and trunkate at 500, people are dumb
+            message = message[:500])
+
 
     class Meta(object):
         ordering = ['-date_created',]

@@ -37,7 +37,8 @@ def user_page(request, username):
 
     unfollows = Unfollow.objects.filter(
         user = user,
-        public = True)
+        public = True,
+        is_active = True)
 
     return {
         'user': user,

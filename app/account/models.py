@@ -113,8 +113,10 @@ class CustomUser(AbstractUser):
         self.tweepy_authd_api.destroy_friendship(
             screen_name=username_to_unfollow)
 
-        return Unfollow.objects.create(user=to_unfollow_user,
-            unfollowed_by=self, message=message)
+        return Unfollow.create_unfollow(
+            user = to_unfollow_user,
+            unfollowed_by = self,
+            message = message)
 
 
     def _grab_following_from_twitter(self):
