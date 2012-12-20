@@ -6,8 +6,6 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 
-from .models import Unfollow
-
 
 logger = logging.getLogger(__name__)
 
@@ -24,10 +22,13 @@ def user_page(request, username):
     """User page
 
     """
+    force_refresh = request.GET.has_key('force_refresh')
+
     # Looking at our own unfollows (people who have unfollowed us)
     if request.user.username == username:
         template = 'me.html'
-        unfollows = request.user.unfollow_set.all()
+        unfollows = request.user.get_and_cache_list(
+            'mine', force_refresh=force_refresh)
         user = request.user
 
     else:
@@ -36,13 +37,10 @@ def user_page(request, username):
             created, user = get_user_model()\
                 .objects.get_or_create_by_username(username)
         except ValueError:
-            return http.HttpResponseNotFound(
-                "No twitter user with username '%s' exists" % username)
+            raise http.Http404
 
-        unfollows = Unfollow.objects.filter(
-            user = user,
-            public = True,
-            is_active = True)
+        unfollows = user.get_and_cache_list(
+            'unfollows', force_refresh=force_refresh)
 
     return {
         'TEMPLATE': template,
@@ -54,8 +52,10 @@ def user_page(request, username):
 @login_required
 @render_to('mine.html')
 def mine(request):
+    force_refresh = request.GET.has_key('force_refresh')
     return {
-        "unfollows": request.user.unfollowed_by.all()
+        "unfollows": request.user.get_and_cache_list(
+            'mine', force_refresh=force_refresh)
     }
 
 
