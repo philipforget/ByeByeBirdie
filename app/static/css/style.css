@@ -414,7 +414,7 @@ header#small-header {
     #main form#unfollow-message {
       width: 100%; }
       #main form#unfollow-message .button-style {
-        width: 40%; }
+        width: 34%; }
         #main form#unfollow-message .button-style.gray {
           width: 20%; }
 
@@ -538,12 +538,12 @@ header#small-header {
   line-height: 1.2;
   padding: 2em;
   font-weight: bold;
-  background: #e6e0e0;
+  background: #eee8e8;
   margin-top: 15px;
   color: #666666;
   text-align: center;
-  border-bottom: 1px solid #b30101;
-  border-top: 1px solid #b30101; }
+  border-bottom: 1px solid #e9d4d4;
+  border-top: 1px solid #e9d4d4; }
   #empty-message p:first-child em {
     color: #ce5757;
     font-style: italic; }
