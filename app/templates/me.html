@@ -2,7 +2,7 @@
 
 {% block content %}
 <section id="user-list">
-	<div id="user-profile">
+	<div id="user-profile" class="empty">
 		<img src="http://api.twitter.com/1/users/profile_image/{{ user.username }}" />
 		<div class="middle-profile">
 			<h2>{{ user.name }}</h2>
@@ -10,11 +10,10 @@
 		</div>
 		<a href="http://www.twitter.com/{{ user.username }}" class="button-style gray">View on Twitter</a>
 	</div>
-	
-    <div id="login-hold">poop</div>
 
-	<h3>Recent Unfollows</h3>
-	<ul id="unfollow-list">
+	<h3 class="left">People who have unfollowed you</h3>
+	<h3 class="right"><a href="/-/mine">People you've unfollowed</a></h3>
+	<ul id="unfollow-list" class="edit">
 		{% for unfollow in unfollows %}
 		<li>
 			<img src="http://api.twitter.com/1/users/profile_image/{{ unfollow.unfollowed_by.username }}" />
