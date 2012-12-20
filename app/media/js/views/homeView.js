@@ -185,3 +185,5 @@ App.HomeView = Backbone.View.extend({
     	return false;
     }
 });
+
+new App.HomeView();

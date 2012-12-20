@@ -16,6 +16,7 @@
 		<textarea id="message-text" placeholder="Enter your goodbye message here..."></textarea>
 		<p><span id="text-remain"></span> characters left</p>
 		<input type="submit" id="submit-message" class="button-style" value="See ya later sucka" />
+		<input id="user-hidden" type="hidden" value="{{ user.username }}" />
 	</form> 
 	{% else %}
 		<a href="">Login</a>
@@ -24,16 +25,20 @@
 	<h3>Recent Unfollows</h3>
 	<ul id="unfollow-list">
 		{% for unfollow in unfollows %}
-		<li>
+		<!-- <li>
 			<img src="http://api.twitter.com/1/users/profile_image/{{ unfollow.unfollowed_by.username }}" />
 			<div class="right-profile">
 				<h2>{{ unfollow.unfollwed_by.name }}</h2>
 				<p>{{ unfollow.message }}</p>
 			</div>
-		</li>
-		{% empty %}
-			no one unfollowed this bitch yet.
+		</li> -->
+		
+			<p id="empty-message">No one has unfollowed {{ user.username }} on Bye Bye Birdie yet. You can be the first though. No pressure. Actually just do what you want.</p>
 		{% endfor %}
 	</ul>
 </section>
+{% endblock %}
+
+{% block bottom_scripts %}
+	<script src="media/js/views/userView.js"></script>
 {% endblock %}

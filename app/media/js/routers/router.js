@@ -5,12 +5,12 @@ App.Router = Backbone.Router.extend({
 	},
 
 	home: function() {
+		console.log('kajsl;')
 		new App.HomeView();
 	},
 
 	user: function(username) {
-		new App.UserView({
-			username: username
-		});
+		console.log(username)
+		new App.UserView();
 	}
 });

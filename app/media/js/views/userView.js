@@ -2,23 +2,16 @@ App.UserView = Backbone.View.extend({
 	el: '#main',
 
 	events: {
-		'keyup #message-text' : 'onKeyUp',
-        'paste #message-text' : 'onKeyUp'
+		'keyup #message-text': 'onKeyUp',
+        'paste #message-text': 'onKeyUp',
+        'submit #unfollow-message': 'unfollow'
 	},
 	
 	initialize: function() {
-		this.template = _.template(TPL.get('user'));
-
-		// grab username from url
-		this.username = this.options.username;
-
 		this.render();
 	},
 
 	render: function() {
-		$(this.el).empty();
-		$(this.el).hide().append(this.template()).fadeIn();
-
 		this.updateCharacters();
         this.cleanupBlurb();
 
@@ -72,5 +65,21 @@ App.UserView = Backbone.View.extend({
         blurb = blurb.replace(/\s+/g," ");
 
         return blurb;
+    },
+
+    unfollow: function() {
+        var username = $('#user-hidden').val(),
+            message = $('#message-text').val();
+
+            console.log(username, message)
+
+        $.post('/api/v1/unfollow', { 
+            'username': username,
+            'message': message
+        });
+
+        return false;
     }
 });
+
+new App.UserView();

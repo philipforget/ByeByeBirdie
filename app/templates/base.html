@@ -20,14 +20,9 @@
 	<script src="media/js/plugins/ui.js"></script>
 
 	<!-- ROUTER -->
-	<script src="media/js/routers/router.js"></script>
 
 	<!-- MODELS -->
-	<script src="media/js/models/tmpModel.js"></script>
-
-	<!-- VIEWS -->
-	<script src="media/js/views/homeView.js"></script>
-	<script src="media/js/views/userView.js"></script>
+	<script src="media/js/models/tmpModel.js"></script>	
 
 </head>
 
@@ -53,4 +48,8 @@
   <script>window.jQuery || document.write('<script src="media/js/lib/jquery-1.8.2.js"><\/script>')</script>
 
 </body>
+
+ {% block bottom_scripts %}
+ {% endblock %}
+
 </html>
