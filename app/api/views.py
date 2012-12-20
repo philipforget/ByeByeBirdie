@@ -2,6 +2,16 @@ from django.contrib.auth.decorators import login_required
 from annoying.decorators import ajax_request
 
 
+
+@login_required
+@ajax_request
+def me(request):
+    return {
+        'name': request.user.name,
+        'screen_name': request.user.username,
+    }
+
+
 @login_required
 @ajax_request
 def following(request):

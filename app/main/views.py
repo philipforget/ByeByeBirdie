@@ -17,7 +17,6 @@ def home(request):
     return {'request': request}
 
 
-
 def user_page(request, username):
     """User page"""
     return render(request, 'user.html')
