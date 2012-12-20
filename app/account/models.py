@@ -107,11 +107,9 @@ class CustomUser(AbstractUser):
 
         `username_to_unfollow` should be a string of a Twitter username.
         """
+        # Create the user locally, just in case
         created, to_unfollow_user = \
             CustomUser.objects.get_or_create_by_username(username_to_unfollow)
-
-        self.tweepy_authd_api.destroy_friendship(
-            screen_name=username_to_unfollow)
 
         return Unfollow.create_unfollow(
             user = to_unfollow_user,
