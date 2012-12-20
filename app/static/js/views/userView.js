@@ -2,9 +2,8 @@ App.UserView = Backbone.View.extend({
 	el: '#main',
 
 	events: {
-		'keyup #message-text': 'onKeyUp',
-        'paste #message-text': 'onKeyUp',
-        'submit #unfollow-message': 'unfollow'
+		'keyup #message': 'onKeyUp',
+        'paste #message': 'onKeyUp'
 	},
 	
 	initialize: function() {
@@ -19,7 +18,7 @@ App.UserView = Backbone.View.extend({
 	},
 
 	atMaxCharCount : function () {
-        var blurb = this.$('#message-text').val();
+        var blurb = this.$('#message').val();
 
         if (blurb.length >= 500) {
             return true;
@@ -29,7 +28,7 @@ App.UserView = Backbone.View.extend({
     },
 
     updateCharacters : function () {
-        var blurb = this.$('#message-text').val(),
+        var blurb = this.$('#message').val(),
             remaining  = 500 - blurb.length;
 
         this.$("#text-remain").text(remaining);
@@ -39,25 +38,25 @@ App.UserView = Backbone.View.extend({
         this.updateCharacters();
 
         if (this.atMaxCharCount()) {
-            var blurb = this.$('#message-text').val(),
+            var blurb = this.$('#message').val(),
                 newVal = blurb.substring(0, 500);
 
-            this.$('#message-text').val(newVal);
+            this.$('#message').val(newVal);
         }
 
         this.updateBlurb();
     },
 
     updateBlurb : function () {
-        var blurb = this.$('#message-text').val();
+        var blurb = this.$('#message').val();
     },
 
     cleanupBlurb : function () {
-        var blurb = this.$('#message-text').val();
+        var blurb = this.$('#message').val();
 
         blurb = this._removeExtras(blurb);
 
-        this.$('#message-text').val(blurb);
+        this.$('#message').val(blurb);
     },
 
     _removeExtras : function (blurb) {
@@ -65,21 +64,6 @@ App.UserView = Backbone.View.extend({
         blurb = blurb.replace(/\s+/g," ");
 
         return blurb;
-    },
-
-    unfollow: function() {
-        var username = $('#user-hidden').val(),
-            message = $('#message-text').val();
-
-            $('#unfollow-message').fadeOut();
-
-
-        $.post('/-/api/v1/unfollow', { 
-            'username': username,
-            'message': message
-        });
-
-        return false;
     }
 });
 

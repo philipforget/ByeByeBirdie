@@ -11,26 +11,33 @@
 		<a href="http://www.twitter.com/{{ user.username }}" class="button-style gray">View on Twitter</a>
 	</div>
 
-	<h3 class="left">People who have unfollowed you</h3>
-	<h3 class="right"><a href="/-/mine">People you've unfollowed</a></h3>
-	<ul id="unfollow-list" class="edit">
-		{% for unfollow in unfollows %}
-		<li>
-			<a href="/{{ unfollow.unfollowed_by.username }}">
-				<img src="http://api.twitter.com/1/users/profile_image/{{ unfollow.unfollowed_by.username }}" />
-			</a>
-			<div class="right-profile">
-				<h2>{{ unfollow.unfollowed_by.name }}</h2>
-				<p>{{ unfollow.message }}</p>
-			</div>
-		</li>
-		{% empty %}
+	{% if user.is_opted_out %}
 		<div  id="empty-message">
-			<p>No one has unfollowed you on Bye Bye Birdie yet.</p> 
-			<p>I'm sure someone will come along anyday now. It helps if you tweet incessantly about php.</p>
+			<p><em>You</em> have chosen to opt out of Bye Bye Birdie.</p> 
+			<p>We respect that decision.  Good luck in life.</p>
 		</div>
-		{% endfor %}
-	</ul>
+    {% else %}
+		<h3 class="left">People who have unfollowed you</h3>
+		<h3 class="right"><a href="/-/mine">People you've unfollowed</a></h3>
+		<ul id="unfollow-list" class="edit">
+			{% for unfollow in unfollows %}
+			<li>
+				<a href="/{{ unfollow.unfollowed_by.username }}">
+					<img src="http://api.twitter.com/1/users/profile_image/{{ unfollow.unfollowed_by.username }}" />
+				</a>
+				<div class="right-profile">
+					<h2>{{ unfollow.unfollowed_by.name }}</h2>
+					<p>{{ unfollow.message }}</p>
+				</div>
+			</li>
+			{% empty %}
+			<div  id="empty-message">
+				<p>No one has unfollowed you on Bye Bye Birdie yet.</p> 
+				<p>I'm sure someone will come along anyday now. It helps if you tweet incessantly about php.</p>
+			</div>
+			{% endfor %}
+		</ul>
+	{% endif %}
 </section>
 {% endblock %}
 
