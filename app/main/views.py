@@ -1,9 +1,10 @@
 import logging
 
 from annoying.decorators import render_to
+from django import http
 from django.contrib.auth import get_user_model
 from django.contrib.auth import logout as auth_logout
-from django import http
+from django.contrib.auth.decorators import login_required
 
 from .models import Unfollow
 
@@ -50,9 +51,12 @@ def user_page(request, username):
     }
 
 
+@login_required
 @render_to('mine.html')
 def mine(request):
-    pass
+    return {
+        "unfollows": request.user.unfollowed_by.all()
+    }
 
 
 def logout(request):
