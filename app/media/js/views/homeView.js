@@ -143,7 +143,7 @@ App.HomeView = Backbone.View.extend({
 	autocomplete: function(e) {
 		$('#unfollow-hidden').val("");
 
-		$.get('/api/v1/me/following', function(data) {
+		$.get('/-/api/v1/me/following', function(data) {
 		  	$(e.target).autocomplete({
 	            source: _.map(data.following, function(followItem) { 
 	            			return followItem.screen_name + ':' + followItem.name
