@@ -83,7 +83,7 @@ header {
 
     .home-bottom {
         margin-top: 100px;
-        background: url(../images/home_bg_shadow.png) no-repeat center 29px;
+        background: url(../images/home_bg_shadow.png) no-repeat center 24px;
         height: 100px;
 
         a {
@@ -92,7 +92,7 @@ header {
             font-weight: bold;
             border-radius: 2px;
             font-size: 1.2em;
-            padding: 1em 3.5em;
+            padding: .75em 3.5em;
             color: white;
             text-shadow: 1px 1px 0 $dark-blue;
             border-radius: 55px;
@@ -123,9 +123,70 @@ header {
 .unfollow-form {
     width: 30em;
     margin: 0 auto;
+
+    span.ui-helper-hidden-accessible {
+        display: none;
+    }
 }
 
-/*** this is known to be real fucking weird. let it be. ***/
+.ui-autocomplete {
+    width: 300px;
+    background: white;
+    overflow: auto;
+    max-height: 280px;
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+
+    .ui-menu-item {
+        clear: both;
+        border-bottom: 1px solid #e7e7e7;
+        overflow: hidden;
+        @include box-sizing;
+
+        &:hover {
+            background: #eee;
+        }
+
+        &>a {
+            overflow: hidden;
+            display: block;
+            padding: 5px .5em;
+            margin: 0;
+
+            &.ui-state-focus {
+                background: #eee;
+            }
+
+            img {
+                float: left;
+                width: 40px;
+                height: 40px;
+                border-radius: 4px;
+            }
+
+            .user-right {
+                padding-left: 20px;
+                float: left;
+                padding-top: 3px;
+
+                p {
+                    &:first-child {
+                        font-weight: bold;
+                        font-size: 14px;
+                    }
+
+                    &:last-child {
+                        font-size: 12px;
+                        color: #777;
+                        margin-top: 3px;
+                    }
+                }
+            }
+        }
+    }
+}
+
 .shadow-bottom {
     height: 85px;
     width: 495px;

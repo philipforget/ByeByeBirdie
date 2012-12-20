@@ -90,7 +90,6 @@ input {
     border-right: none;
     border-left: none;
     font-weight: bold;
-    padding: 0.46em 1.85em;
     text-shadow: 0 1px #B5DFE7;
     width: 25%; }
 
@@ -333,7 +332,7 @@ header#small-header {
     color: #002f3f; }
   #login .home-bottom {
     margin-top: 100px;
-    background: url(../images/home_bg_shadow.png) no-repeat center 29px;
+    background: url(../images/home_bg_shadow.png) no-repeat center 24px;
     height: 100px; }
     #login .home-bottom a {
       background: #9bd9e7;
@@ -351,7 +350,7 @@ header#small-header {
       font-weight: bold;
       border-radius: 2px;
       font-size: 1.2em;
-      padding: 1em 3.5em;
+      padding: .75em 3.5em;
       color: white;
       text-shadow: 1px 1px 0 #002f3f;
       border-radius: 55px;
@@ -383,8 +382,50 @@ header#small-header {
 .unfollow-form {
   width: 30em;
   margin: 0 auto; }
+  .unfollow-form span.ui-helper-hidden-accessible {
+    display: none; }
 
-/*** this is known to be real fucking weird. let it be. ***/
+.ui-autocomplete {
+  width: 300px;
+  background: white;
+  overflow: auto;
+  max-height: 280px;
+  border-left: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  border-right: 1px solid #ccc; }
+  .ui-autocomplete .ui-menu-item {
+    clear: both;
+    border-bottom: 1px solid #e7e7e7;
+    overflow: hidden;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
+    .ui-autocomplete .ui-menu-item:hover {
+      background: #eee; }
+    .ui-autocomplete .ui-menu-item > a {
+      overflow: hidden;
+      display: block;
+      padding: 5px .5em;
+      margin: 0; }
+      .ui-autocomplete .ui-menu-item > a.ui-state-focus {
+        background: #eee; }
+      .ui-autocomplete .ui-menu-item > a img {
+        float: left;
+        width: 40px;
+        height: 40px;
+        border-radius: 4px; }
+      .ui-autocomplete .ui-menu-item > a .user-right {
+        padding-left: 20px;
+        float: left;
+        padding-top: 3px; }
+        .ui-autocomplete .ui-menu-item > a .user-right p:first-child {
+          font-weight: bold;
+          font-size: 14px; }
+        .ui-autocomplete .ui-menu-item > a .user-right p:last-child {
+          font-size: 12px;
+          color: #777;
+          margin-top: 3px; }
+
 .shadow-bottom {
   height: 85px;
   width: 495px;
