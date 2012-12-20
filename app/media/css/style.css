@@ -468,6 +468,25 @@ header#small-header {
       width: 60px;
       height: 60px; }
 
+.center-me {
+  width: 430px;
+  margin: 0 auto; }
+  .center-me #empty-message {
+    margin-top: -50px;
+    margin-bottom: 20px; }
+  .center-me form p {
+    float: left;
+    padding: .4em .75em 0; }
+    .center-me form p label {
+      color: #c8ebeb;
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: bold; }
+  .center-me form input[type='submit'] {
+    display: block;
+    width: 185px;
+    float: right; }
+
 #empty-message {
   font-size: 14px;
   font-weight: normal;
