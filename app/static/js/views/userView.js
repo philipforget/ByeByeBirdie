@@ -71,12 +71,14 @@ App.UserView = Backbone.View.extend({
         var username = $('#user-hidden').val(),
             message = $('#message-text').val();
 
+            $('#unfollow-message').fadeOut();
+
             console.log(username, message)
 
-        $.post('/-/api/v1/unfollow', { 
-            'username': username,
-            'message': message
-        });
+        // $.post('/-/api/v1/unfollow', { 
+        //     'username': username,
+        //     'message': message
+        // });
 
         return false;
     }

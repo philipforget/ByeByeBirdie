@@ -35,7 +35,7 @@
 	
 	<section id="main">
       {% if request.user.is_authenticated %}
-          <a id="logout-link" href="{% url 'logout' %}">Logout</a>
+          <img id="avatar" src="http://api.twitter.com/1/users/profile_image/{{ request.user.username }}" /><a id="logout-link" href="{% url 'logout' %}">Logout</a>
       {% endif %}
       {% block content %}{% endblock %}
 	</section><!-- /main -->

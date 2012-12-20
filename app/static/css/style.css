@@ -304,6 +304,34 @@ textarea {
     height: 35px;
     line-height: 35px; }
 
+#lower-status {
+  background: #002f3f;
+  padding: .4em;
+  border-radius: 0 0 4px 4px;
+  text-align: center; }
+  #lower-status h4 {
+    text-align: left;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #eeeeee;
+    font-weight: bold;
+    padding: .5em; }
+  #lower-status p {
+    text-align: left;
+    padding: 0 .5em;
+    font-size: 12px;
+    color: #cccccc;
+    font-style: italic; }
+    #lower-status p.message {
+      padding: 2em;
+      font-size: 18px;
+      font-style: normal;
+      line-height: 1.25;
+      color: #c9a0a0; }
+      #lower-status p.message:before, #lower-status p.message:after {
+        content: '"';
+        color: #eee; }
+
 body,
 html {
   width: 100%;
@@ -517,6 +545,14 @@ header#small-header {
     font-weight: normal;
     font-size: 13px;
     margin-top: 3px; }
+
+#avatar {
+  border-radius: 4px;
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: 12px;
+  right: 120px; }
 
 #logout-link {
   padding: .5em 1.75em;
