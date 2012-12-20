@@ -67,42 +67,57 @@ header {
 #login {
     width: 60%;
     min-width: 480px;
-    margin: -30px auto 0;
+    margin: -90px auto 0;
+    text-align: center;
 
-    .home-left {
-        float: left;
-        width: 45%;
-        border-right: 1px solid #CCC;
-        padding-right: 45px;
+    .home-top {
 
         p {
-            font-size: 21px;
-            line-height: 1.2;
+            font-size: 14px;
+            font-family: $font-sans;
+            text-align: center;
+            font-weight: bold;
+            color: $dark-blue;
         }
     }
 
-    .home-right {
-        float: right;
-        width: 46%;
-        margin-top: 30px;
+    .home-bottom {
+        margin-top: 100px;
+        background: url(../images/home_bg_shadow.png) no-repeat center 29px;
+        height: 100px;
 
         a {
             @include grad-blue;
             @include box-shadow(0px, 1px, 0px, #F5F5F5, true);
-            border-bottom: 1px solid #000;
-            border-top: none;
-            border-right: none;
-            border-left: none;
             font-weight: bold;
             border-radius: 2px;
-            font-size: .875em;
-            float: right;
-            padding: 1em 3em;
+            font-size: 1.2em;
+            padding: 1em 3.5em;
             color: white;
-            text-shadow: 1px 1px 0 black;
-            border-radius: 20px;
+            text-shadow: 1px 1px 0 $dark-blue;
+            border-radius: 55px;
+            border: 4px solid $dark-blue;
+            text-decoration: none;
+            
+            &:hover {
+                @include grad-blue-hover;
+            }
         }
     }
+}
+
+#logout-link {
+    padding: .5em 1.75em;
+    background: rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 20px;
+    color: white;
+    text-decoration: none;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    border-bottom: 1px solid white;
 }
 
 .unfollow-form {

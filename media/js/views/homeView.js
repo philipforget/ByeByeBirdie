@@ -21,33 +21,33 @@ App.HomeView = Backbone.View.extend({
 		var testData = [
 		{
 			id: 1,
-			username: 'Zeldman Fuckduck',
-			twitterHandle: 'zeldman',
-			image: 'http://api.twitter.com/1/users/profile_image/zeldman',
+			name: 'Zeldman Fuckduck',
+			username: 'zeldman',
+			avatar_url: 'http://api.twitter.com/1/users/profile_image/zeldman',
 		},
 		{
 			id: 2,
-			username: 'Robert Petro',
-			twitterHandle: 'robertjpetro',
-			image: 'http://api.twitter.com/1/users/profile_image/robertjpetro',
+			name: 'Robert Petro',
+			username: 'robertjpetro',
+			avatar_url: 'http://api.twitter.com/1/users/profile_image/robertjpetro',
 		},
 		{
 			id: 3,
-			username: 'Philip Forget',
-			twitterHandle: 'philipforget',
-			image: 'http://api.twitter.com/1/users/profile_image/philipforget',
+			name: 'Philip Forget',
+			username: 'philipforget',
+			avatar_url: 'http://api.twitter.com/1/users/profile_image/philipforget',
 		},
 		{
 			id: 4,
-			username: 'Chris Shoemaker',
-			twitterHandle: 'cshoe_',
-			image: 'http://api.twitter.com/1/users/profile_image/cshoe_',
+			name: 'Chris Shoemaker',
+			username: 'cshoe_',
+			avatar_url: 'http://api.twitter.com/1/users/profile_image/cshoe_',
 		},
 		{
 			id: 5,
-			username: 'Mike Ciarlo',
-			twitterHandle: 'mciarlo',
-			image: 'http://api.twitter.com/1/users/profile_image/mciarlo',
+			name: 'Mike Ciarlo',
+			username: 'mciarlo',
+			avatar_url: 'http://api.twitter.com/1/users/profile_image/mciarlo',
 		}];
 
 		focusedInput.jsonSuggest(testData);

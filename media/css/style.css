@@ -149,7 +149,7 @@ textarea {
   padding: 0px;
   margin: 0px 2px;
   z-index: 1;
-  width: 310px !important;
+  width: 303px !important;
   border-right: 1px solid #DDD;
   border-bottom: 1px solid #DDD;
   box-shadow: 0px 3px 11px #d8d8d8;
@@ -323,20 +323,19 @@ header#small-header {
 #login {
   width: 60%;
   min-width: 480px;
-  margin: -30px auto 0; }
-  #login .home-left {
-    float: left;
-    width: 45%;
-    border-right: 1px solid #CCC;
-    padding-right: 45px; }
-    #login .home-left p {
-      font-size: 21px;
-      line-height: 1.2; }
-  #login .home-right {
-    float: right;
-    width: 46%;
-    margin-top: 30px; }
-    #login .home-right a {
+  margin: -90px auto 0;
+  text-align: center; }
+  #login .home-top p {
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    font-weight: bold;
+    color: #002f3f; }
+  #login .home-bottom {
+    margin-top: 100px;
+    background: url(../images/home_bg_shadow.png) no-repeat center 29px;
+    height: 100px; }
+    #login .home-bottom a {
       background: #9bd9e7;
       background: -moz-linear-gradient(top, #9bd9e7 0%, #85d1e2 3%, #74c4da 45%, #54aac9 100%);
       background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #9bd9e7), color-stop(3%, #85d1e2), color-stop(45%, #74c4da), color-stop(100%, #54aac9));
@@ -349,18 +348,37 @@ header#small-header {
       -webkit-box-shadow: inset 0px 1px 0px whitesmoke;
       -moz-box-shadow: inset 0px 1px 0px whitesmoke;
       -o-box-shadow: inset 0px 1px 0px whitesmoke;
-      border-bottom: 1px solid #000;
-      border-top: none;
-      border-right: none;
-      border-left: none;
       font-weight: bold;
       border-radius: 2px;
-      font-size: .875em;
-      float: right;
-      padding: 1em 3em;
+      font-size: 1.2em;
+      padding: 1em 3.5em;
       color: white;
-      text-shadow: 1px 1px 0 black;
-      border-radius: 20px; }
+      text-shadow: 1px 1px 0 #002f3f;
+      border-radius: 55px;
+      border: 4px solid #002f3f;
+      text-decoration: none; }
+      #login .home-bottom a:hover {
+        background: #9bd9e7;
+        background: -moz-linear-gradient(top, rgba(155, 217, 231, 0.8) 0%, #54aac9 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #9bd9e7), color-stop(100%, #54aac9));
+        background: -webkit-linear-gradient(top, rgba(155, 217, 231, 0.8) 0%, #54aac9 100%);
+        background: -o-linear-gradient(top, rgba(155, 217, 231, 0.8) 0%, #54aac9 100%);
+        background: -ms-linear-gradient(top, rgba(155, 217, 231, 0.8) 0%, #54aac9 100%);
+        background: linear-gradient(top, rgba(155, 217, 231, 0.8) 0%, #54aac9 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#9bd9e7', endColorstr='#54aac9',GradientType=0 ); }
+
+#logout-link {
+  padding: .5em 1.75em;
+  background: rgba(0, 0, 0, 0.2);
+  font-weight: bold;
+  font-size: 14px;
+  border-radius: 20px;
+  color: white;
+  text-decoration: none;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  border-bottom: 1px solid white; }
 
 .unfollow-form {
   width: 30em;
