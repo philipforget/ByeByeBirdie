@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 @render_to('home.html')
 def home(request):
     """Homepage"""
-    return {'request': request}
+    return {}
 
 
 @render_to('user.html')

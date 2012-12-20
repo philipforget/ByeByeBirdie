@@ -12,6 +12,11 @@ REPO_ROOT = os.path.abspath(
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.request',
+    'django.contrib.auth.context_processors.auth',
+)
+
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
@@ -32,7 +37,7 @@ SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
-USE_I18N = True
+USE_I18N = False
 
 # If you set this to False, Django will not format dates, numbers and
 # calendars according to the current locale.
