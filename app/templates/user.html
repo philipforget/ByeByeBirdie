@@ -26,6 +26,7 @@
 					<p>We respect that decision and so should you.  Carry on friend.</p>
 				</div>
 	        {% else %}
+                {% if not request.user.is_opted_out %}
 	        	<form action="" method="POST" id="unfollow-message">
 	                {% csrf_token %}
 	                <textarea id="message" name="message" placeholder="Enter your goodbye message here..."></textarea>
@@ -33,6 +34,9 @@
 	                <p><span id="text-remain"></span> characters left</p>
 	                {{ form.message.errors }}
 	            </form> 	
+                {% else %}
+                <div  id="empty-message"><p>You have chosen to opt out. You won't be able to unfollow people using Bye Bye Birdie.</p></div>
+                {% endif %}
 			{% endif %}
 		{% else %}
 			<div id="login-hold">
