@@ -311,14 +311,15 @@ textarea {
   border-radius: 0 0 4px 4px;
   text-align: center; }
   #lower-status h4 {
+    background: #f7f7f7;
     text-align: left;
     font-size: 12px;
-    text-transform: uppercase;
-    color: #dddddd;
-    font-weight: bold;
+    color: #4e4e4e;
     padding: .5em;
-    text-shadow: 1px 1px 1px black; }
+    font-family: arial;
+    text-shadow: 1px 1px 1px white; }
   #lower-status p {
+    background: #fffdfd;
     text-align: left;
     padding: 0 .5em;
     font-size: 12px;
@@ -326,10 +327,13 @@ textarea {
     font-style: italic; }
     #lower-status p.message {
       padding: 1em 2em;
-      font-size: 18px;
+      font-size: 16px;
       font-style: normal;
       line-height: 1.25;
-      color: #c9a0a0; }
+      color: #2c3557;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      font-weight: bold; }
       #lower-status p.message:before, #lower-status p.message:after {
         content: '"';
         color: #eee; }
@@ -377,7 +381,7 @@ body {
 
 header#large-header {
   margin: 50px auto 0;
-  width: 90%; }
+  width: 40%; }
   header#large-header h1 {
     background: url(../images/logo.png) no-repeat;
     height: 193px;
