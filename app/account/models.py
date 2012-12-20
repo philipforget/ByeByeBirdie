@@ -127,7 +127,8 @@ class CustomUser(AbstractUser):
                 print "No cache hit"
                 # We have no hit at all, grab it
                 cached = {
-                    'mine': self.unfollowed_by.all(),
+                    'mine': self.unfollowed_by.filter(
+                        unfollowed_by__is_opted_out = False),
 
                     'unfollowed': self.unfollow_set.filter(
                         user__is_opted_out = False,
