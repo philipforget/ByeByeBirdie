@@ -21,7 +21,7 @@
 	
 		{% if request.user.is_authenticated %}
 			{% if user.is_opted_out %}
-				<div  id="empty-message" class="suck-up">
+				<div  id="empty-message" class="suck-up-border">
 					<p><em>{{ user.username }}</em> has chosen to opt out of Bye Bye Birdie.</p> 
 					<p>We respect that decision and so should you.  Carry on friend.</p>
 				</div>
@@ -35,7 +35,10 @@
 	                {{ form.message.errors }}
 	            </form> 	
                 {% else %}
-                <div  id="empty-message"><p>You have chosen to opt out. You won't be able to unfollow people using Bye Bye Birdie.</p></div>
+                <div  id="empty-message" class="suck-up-border">
+                	<p><em>You</em> have chosen to opt out of Bye Bye Birdie.</p>
+                	<p>You won't be able to unfollow people using Bye Bye Birdie.</p>
+                </div>
                 {% endif %}
 			{% endif %}
 		{% else %}
