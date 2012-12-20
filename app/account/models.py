@@ -108,11 +108,11 @@ class CustomUser(AbstractUser):
         `username_to_unfollow` should be a string of a Twitter username.
         """
         # Create the user locally, just in case
-        created, to_unfollow_user = \
+        created, user_to_unfollow = \
             CustomUser.objects.get_or_create_by_username(username_to_unfollow)
 
         return Unfollow.create_unfollow(
-            user = to_unfollow_user,
+            user = user_to_unfollow,
             unfollowed_by = self,
             message = message)
 
