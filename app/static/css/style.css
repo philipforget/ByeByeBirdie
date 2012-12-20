@@ -323,7 +323,7 @@ textarea {
     color: #cccccc;
     font-style: italic; }
     #lower-status p.message {
-      padding: 2em;
+      padding: 1em 2em;
       font-size: 18px;
       font-style: normal;
       line-height: 1.25;

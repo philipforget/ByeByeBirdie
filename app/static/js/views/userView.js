@@ -75,10 +75,10 @@ App.UserView = Backbone.View.extend({
 
             console.log(username, message)
 
-        // $.post('/-/api/v1/unfollow', { 
-        //     'username': username,
-        //     'message': message
-        // });
+        $.post('/-/api/v1/unfollow', { 
+            'username': username,
+            'message': message
+        });
 
         return false;
     }
