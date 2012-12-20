@@ -10,25 +10,29 @@
 		</div>
 		<a href="http://www.twitter.com/{{ user.username }}" class="button-style gray">View on Twitter</a>
 	</div>
-	
-	{% if request.user.is_authenticated %}
-	<form id="unfollow-message">
-		<textarea id="message-text" placeholder="Enter your goodbye message here..."></textarea>
-		<p><span id="text-remain"></span> characters left</p>
-		<input type="submit" id="submit-message" class="button-style" value="See ya later sucka" />
-		<input id="user-hidden" type="hidden" value="{{ user.username }}" />
-	</form> 
-	{% else %}
-		<div id="login-hold">
-			<a class"button-style" href="{% url 'socialauth_begin' 'twitter'%}">Login with Twitter</a>
-		</div>
-	{% endif %}
 
+	{% if existing_unfollow %}
 	<div id="lower-status">
 		<h4>So you've unfollowed this person.</h4>
 		<p>Here's what you had to say:</p>
-		<p class="message">See you later homie.  Never liked you...ever.  I never liked yo ass at all. Peace out.</p>
+		<p class="message">{{ existing_unfollow.message }}</p>
 	</div>
+
+	{% else %}
+	
+		{% if request.user.is_authenticated %}
+		<form id="unfollow-message">
+			<textarea id="message-text" placeholder="Enter your goodbye message here..."></textarea>
+			<p><span id="text-remain"></span> characters left</p>
+			<input type="submit" id="submit-message" class="button-style" value="See ya later sucka" />
+			<input id="user-hidden" type="hidden" value="{{ user.username }}" />
+		</form> 
+		{% else %}
+			<div id="login-hold">
+				<a class"button-style" href="{% url 'socialauth_begin' 'twitter'%}">Login with Twitter</a>
+			</div>
+			{% endif %}
+	{% endif %}
 
 	<h3>Recent Unfollows</h3>
 	<ul id="unfollow-list">
