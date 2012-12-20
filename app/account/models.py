@@ -18,8 +18,6 @@ logger = logging.getLogger(__name__)
 
 
 class CustomUserManager(UserManager):
-
-
     def get_or_create_by_username(self, username):
         """Get a user by username. If one doesn't exist, create it.
 
@@ -46,6 +44,13 @@ class CustomUser(AbstractUser):
     objects = CustomUserManager()
 
 
+    def serialize(self):
+        return {
+            'name': self.name,
+            'screen_name': self.username
+        }
+
+
     @property
     def avatar_url(self):
         """Return a properly formed twitter avatar url for this user.
@@ -63,24 +68,6 @@ class CustomUser(AbstractUser):
         """
         auth = UserSocialAuth.objects.get(user=self)
         return auth.tokens
-
-
-    def unfollow(self, to_unfollow_username):
-        """Create an Unfollow for this user to `to_unfollow_username`.
-
-        `to_unfollow_username` should be a string of a Twitter username.
-        """
-        created, to_unfollow_user = \
-            CustomUser.objects.get_or_create_by_username(to_unfollow_username)
-
-        try:
-            self.tweepy_authd_api.destroy_friendship(
-                screen_name=to_unfollow_username)
-        except tweepy.error.TweepError, e:
-            logger.warn('Error destroying friendships. %s', e)
-        else:
-            Unfollow.objects.create(user=to_unfollow_user,
-                unfollowed_by=self)
 
 
     @property
@@ -106,6 +93,21 @@ class CustomUser(AbstractUser):
             self._tweepy_api = tweepy.API(auth)
 
         return self._tweepy_api
+
+
+    def unfollow(self, username_to_unfollow):
+        """Create an Unfollow for this user to `username_to_unfollow`.
+
+        `username_to_unfollow` should be a string of a Twitter username.
+        """
+        created, to_unfollow_user = \
+            CustomUser.objects.get_or_create_by_username(username_to_unfollow)
+
+        self.tweepy_authd_api.destroy_friendship(
+            screen_name=username_to_unfollow)
+
+        return Unfollow.objects.create(user=to_unfollow_user,
+            unfollowed_by=self)
 
 
     def _grab_following_from_twitter(self):
