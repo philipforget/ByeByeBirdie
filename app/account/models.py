@@ -95,7 +95,7 @@ class CustomUser(AbstractUser):
         return self._tweepy_api
 
 
-    def unfollow(self, username_to_unfollow):
+    def unfollow(self, username_to_unfollow, message):
         """Create an Unfollow for this user to `username_to_unfollow`.
 
         `username_to_unfollow` should be a string of a Twitter username.
@@ -107,7 +107,7 @@ class CustomUser(AbstractUser):
             screen_name=username_to_unfollow)
 
         return Unfollow.objects.create(user=to_unfollow_user,
-            unfollowed_by=self)
+            unfollowed_by=self, message=message)
 
 
     def _grab_following_from_twitter(self):

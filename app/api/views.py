@@ -33,9 +33,14 @@ def unfollow(request):
     if request.POST.get('username', None) is None:
         return HttpResponseBadRequest(
             'no "username" post paramater found')
+
+    if request.POST.get('message', None) is None:
+        return HttpResponseBadRequest(
+            'no "message" post paramater found')
     
     try:
-        unfollow = request.user.unfollow(request.POST['username'])
+        unfollow = request.user.unfollow(
+            request.POST['username'], request.POST['message'])
 
     except:
         return HttpResponseBadRequest(
