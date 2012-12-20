@@ -1,11 +1,11 @@
 <section id="user-list">
 	<div id="user-profile">
-		<img src="http://api.twitter.com/1/users/profile_image/kennethreitz" />
+		<img src="http://api.twitter.com/1/users/profile_image/{{ user.username }}" />
 		<div class="middle-profile">
-			<h2>Kenneth Reitz</h2>
-			<p class="twitter-handle">@kennethreitz</p>
+			<h2>{{ user.name }}</h2>
+			<p class="twitter-handle">@{{ user.username }}</p>
 		</div>
-		<a href="#" class="button-style gray">View on Twitter</a>
+		<a href="http://www.twitter.com/{{ user.username }}" class="button-style gray">View on Twitter</a>
 	</div>
 	<form id="unfollow-message">
 		<textarea id="message-text" placeholder="Enter your goodbye message here..."></textarea>
