@@ -1,3 +1,6 @@
+{% extends "base.html" %}
+
+{% block content %}
 <section id="user-list">
 	<div id="user-profile">
 		<img src="http://api.twitter.com/1/users/profile_image/{{ user.username }}" />
@@ -37,3 +40,4 @@
 		</li>
 	</ul>
 </section>
+{% endblock %}
