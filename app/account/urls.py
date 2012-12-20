@@ -4,5 +4,5 @@ from . import views
 
 
 urlpatterns = patterns('',
-    url(r'^opt-out$', views.opt_out, name='opt-out'),
+    url(r'^-/opt-out$', views.opt_out, name='opt-out'),
 )

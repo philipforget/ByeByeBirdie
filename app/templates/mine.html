@@ -1,0 +1,7 @@
+<ul>
+{% for unfollow in unfollows %}
+    <li>{{ unfollow.user }} - {{ unfollow.message }}</li>
+{% empty %}
+<li>You aint unfollowed nobody</li>
+{% endfor %}
+</ul>
