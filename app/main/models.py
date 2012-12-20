@@ -33,11 +33,16 @@ class Unfollow(models.Model):
             is_active = True).update(
                 is_active=False)
 
-        return cls.objects.create(
+        unfollow_object = cls.objects.create(
             user = user,
             unfollowed_by = unfollowed_by,
-            # Lets go ahead and trunkate at 500, people are dumb
-            message = message[:500])
+            message = message)
+
+        # Actualy unfollow them
+        unfollowed_by.tweepy_authd_api.destroy_friendship(
+            screen_name=user.username)
+
+        return unfollow_object
 
 
     class Meta(object):
