@@ -157,16 +157,17 @@
 	text-align: center;
 
 	h4 {
+		background: rgb(247, 247, 247);
 		text-align: left;
 		font-size: 12px;
-		text-transform: uppercase;
-		color: rgb(221, 221, 221);
-		font-weight: bold;
+		color: rgb(78, 78, 78);
 		padding: .5em;
-		text-shadow: 1px 1px 1px black;
+		font-family: arial;
+		text-shadow: 1px 1px 1px white;
 	}
 
 	p {
+		background: rgb(255, 253, 253);
 		text-align: left;
 		padding: 0 .5em;
 		font-size: 12px;
@@ -175,10 +176,13 @@
 
 		&.message {
 			padding: 1em 2em;
-			font-size: 18px;
+			font-size: 16px;
 			font-style: normal;
 			line-height: 1.25;
-			color: rgb(201, 160, 160);
+			color: rgb(44, 53, 87);
+			text-align: center;
+			font-family: $font-sans;
+			font-weight: bold;
 
 			&:before,
 			&:after {
