@@ -124,38 +124,27 @@ class CustomUser(AbstractUser):
 
             # Then check memcache
             if cache.get(cache_key, None) is None or force_refresh:
-                print "No cache hit"
                 # We have no hit at all, grab it
                 cached = {
-                    'mine': self.unfollowed_by.filter(
-                        user__is_opted_out = False,
-                        unfollowed_by__is_opted_out = False),
-
-                    'unfollowed': self.unfollow_set.filter(
-                        user__is_opted_out = False,
-                        unfollowed_by__is_opted_out = False),
-
+                    'mine': self.unfollowed_by.all(),
+                    'unfollowed': self.unfollow_set.all(),
                     'unfollows': Unfollow.objects.filter(
                         user = self,
-                        unfollowed_by__is_opted_out = False,
                         public = True,
                         is_active = True)
                 }[slug]
 
                 cache.set(cache_key, cached, 24 * 60 * 60)
 
-            else:
-                print "Memcached  hit"
-
             if cached is None:
                 cached = cache.get(cache_key)
 
             setattr(self, cache_key, cached)
 
-        else:
-            print "Object cache hit"
-
-        return cached
+        # As the last step, lets get rid of any opted out people
+        return cached.filter(
+            user__is_opted_out = False,
+            unfollowed_by__is_opted_out = False)
 
     
     def invalidate_list_caches(self):

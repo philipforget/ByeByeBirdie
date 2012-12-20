@@ -86,9 +86,6 @@ def user_page(request, username):
                     unfollowed_by = request.user,
                     is_active = True)[0]
 
-                # Dont show your own in the list
-                unfollows = unfollows.exclude(id=existing_unfollow.id)
-
         except (Unfollow.DoesNotExist, IndexError):
             if form is None:
                 form = UnfollowForm()
