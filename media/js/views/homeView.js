@@ -160,6 +160,8 @@ App.HomeView = Backbone.View.extend({
 	            	var name = ui.item.label.split(':')[1],
 	            		screen_name = ui.item.label.split(':')[0];
 
+	            		console.log(ui.item, name, screen_name)
+
    					$('#unfollow-input').val(name);
    					$('#unfollow-hidden').val(screen_name);
                 	return false;
@@ -179,6 +181,7 @@ App.HomeView = Backbone.View.extend({
     goToUser: function() {
     	var userName = $('#unfollow-hidden').val();
 
-    	window.location.href = '/' + userName ;
+    	window.location.href = '/' + userName;
+    	return false;
     }
 });
