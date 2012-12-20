@@ -30,7 +30,7 @@ def user_page(request, username):
     if request.user.username == username:
         template = 'me.html'
         unfollows = request.user.get_and_cache_list(
-            'mine', force_refresh=force_refresh)
+            'unfollowed', force_refresh=force_refresh)
         user = request.user
 
     else:
