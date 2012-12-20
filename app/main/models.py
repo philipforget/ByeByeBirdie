@@ -13,7 +13,6 @@ class Unfollow(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
 
     class Meta(object):
-        unique_together = (('user', 'unfollowed_by'),)
         ordering = ['-date_created',]
 
 
@@ -24,5 +23,5 @@ class Unfollow(models.Model):
             'unfollowed_by': self.unfollowed_by.serialize(),
             'public': self.public,
             'anonymous': self.anonymous,
-            'date_created': self.date_created
+            'date_created': self.date_created.isoformat()
         }

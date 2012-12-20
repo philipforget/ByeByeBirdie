@@ -1,12 +1,10 @@
 import logging
-
 import tweepy
 
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser, UserManager
 from django.core.cache import cache
 from django.db import models
-
 from social_auth.models import UserSocialAuth
 
 from main.models import Unfollow

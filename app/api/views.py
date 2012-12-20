@@ -42,7 +42,8 @@ def unfollow(request):
         unfollow = request.user.unfollow(
             request.POST['username'], request.POST['message'])
 
-    except:
+    except Exception as e:
+        print e
         return HttpResponseBadRequest(
             'Error creating unfollow. You must be following the user')
 
