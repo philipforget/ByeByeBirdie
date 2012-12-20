@@ -16,9 +16,12 @@
 		<textarea id="message-text" placeholder="Enter your goodbye message here..."></textarea>
 		<p><span id="text-remain"></span> characters left</p>
 		<input type="submit" id="submit-message" class="button-style" value="See ya later sucka" />
+		<input id="user-hidden" type="hidden" value="{{ user.username }}" />
 	</form> 
 	{% else %}
-		<a href="">Login</a>
+		<div id="login-hold">
+			<a class"button-style" href="{% url 'socialauth_begin' 'twitter'%}">Login with Twitter</a>
+		</div>
 	{% endif %}
 
 	<h3>Recent Unfollows</h3>
@@ -32,8 +35,15 @@
 			</div>
 		</li>
 		{% empty %}
-			no one unfollowed this bitch yet.
+		<div  id="empty-message">
+			<p>No one has unfollowed <em>{{ user.username }}</em> on Bye Bye Birdie yet.</p> 
+			<p>You can be the first though. No pressure. Actually just do what you want.</p>
+		</div>
 		{% endfor %}
 	</ul>
 </section>
+{% endblock %}
+
+{% block bottom_scripts %}
+	<script src="media/js/views/userView.js"></script>
 {% endblock %}

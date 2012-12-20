@@ -260,6 +260,36 @@ textarea {
           font-size: 14px;
           line-height: 1.25; }
 
+#login-hold {
+  background: #002f3f;
+  padding: 1.5em;
+  border-radius: 0 0 4px 4px; }
+  #login-hold .button-style {
+    background: #9bd9e7;
+    background: -moz-linear-gradient(top, #9bd9e7 0%, #85d1e2 3%, #74c4da 45%, #54aac9 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #9bd9e7), color-stop(3%, #85d1e2), color-stop(45%, #74c4da), color-stop(100%, #54aac9));
+    background: -webkit-linear-gradient(top, #9bd9e7 0%, #85d1e2 3%, #74c4da 45%, #54aac9 100%);
+    background: -o-linear-gradient(top, #9bd9e7 0%, #85d1e2 3%, #74c4da 45%, #54aac9 100%);
+    background: -ms-linear-gradient(top, #9bd9e7 0%, #85d1e2 3%, #74c4da 45%, #54aac9 100%);
+    background: linear-gradient(top, #9bd9e7 0%, #85d1e2 3%, #74c4da 45%, #54aac9 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#9bd9e7', endColorstr='#54aac9',GradientType=0 );
+    box-shadow: inset 0px 1px 0px whitesmoke;
+    -webkit-box-shadow: inset 0px 1px 0px whitesmoke;
+    -moz-box-shadow: inset 0px 1px 0px whitesmoke;
+    -o-box-shadow: inset 0px 1px 0px whitesmoke;
+    border-bottom: 1px solid #000;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    font-weight: bold;
+    padding: 0.46em 1.85em;
+    text-shadow: 0 1px #B5DFE7;
+    width: 25%;
+    border-radius: 2px;
+    font-size: .875em;
+    padding: 0.4em .8em .5em;
+    float: right; }
+
 body {
   background: url(../images/bg.png);
   line-height: 1;
@@ -400,6 +430,26 @@ header#small-header {
     #home-tile li img {
       width: 60px;
       height: 60px; }
+
+#empty-message {
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.2;
+  padding: 2em;
+  font-weight: bold;
+  background: #e6e0e0;
+  margin-top: 15px;
+  color: #666666;
+  text-align: center;
+  border-bottom: 1px solid #b30101;
+  border-top: 1px solid #b30101; }
+  #empty-message p:first-child em {
+    color: #ce5757;
+    font-style: italic; }
+  #empty-message p:last-child {
+    font-weight: normal;
+    font-size: 13px;
+    margin-top: 3px; }
 
 #logout-link {
   padding: .5em 1.75em;

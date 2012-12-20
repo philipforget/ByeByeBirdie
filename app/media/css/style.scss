@@ -170,6 +170,35 @@ header {
     }
 }
 
+#empty-message {
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.2;
+    padding: 2em;
+    font-weight: bold;
+    background: rgb(230, 224, 224);
+    margin-top: 15px;
+    color: rgb(102, 102, 102);
+    text-align: center;
+    border-bottom: 1px solid rgb(179, 1, 1);
+    border-top: 1px solid rgb(179, 1, 1);
+
+    p {
+        &:first-child {
+            em {
+                color: rgb(206, 87, 87);
+                font-style: italic;
+            }
+        }
+
+        &:last-child {
+            font-weight: normal;
+            font-size: 13px;
+            margin-top: 3px
+        }
+    }
+}
+
 #logout-link {
     padding: .5em 1.75em;
     background: rgba(0, 0, 0, 0.2);
