@@ -63,26 +63,41 @@ class CustomUser(AbstractUser):
         """Internal method to actually query twitter for friends
 
         """
+        ids = self.tweepy_authd_api.friends_ids(cursor=-1)[0]
+        users = []
 
-        results = self.tweepy_authd_api.friends(cursor=-1)[0]
+        start = 0
+        while start < len(ids):
+            ids_to_process = ids[start:start + 100]
+            users += self.tweepy_authd_api.lookup_users(
+                user_ids = ids_to_process)
+
+            start += 100
 
         return [
             {
-                'screen_name': result.screen_name,
-                'name': result.name
+                'screen_name': user.screen_name,
+                'name': user.name
             } for
-            result in results]
+            user in users]
         
 
     def get_following(self, force_refresh=False):
+        """Return a list of all people a user is following
+
+        Checks object cache > Memcache > Lookup and caches up each layer on a
+        miss.
+        """
         cache_key = '%s-following' % self.username
 
-        if (getattr(self, '_following', None) is None or
-            cache.get(cache_key, None) is None or
-            force_refresh):
-            following = self._grab_following_from_twitter()
+        if force_refresh or getattr(self, '_following', None) is None:
+            if force_refresh or cache.get(cache_key, None) is None:
+                following = self._grab_following_from_twitter()
+                cache.set(cache_key, following, 7 * 24 * 60 * 60)
 
-            cache.set(cache_key, following, 7 * 24 * 60 * 60)
+            else:
+                following = cache.get(cache_key)
+
             self._following = following
 
         return self._following
