@@ -36,8 +36,7 @@ def user_page(request, username):
             created, user = get_user_model()\
                 .objects.get_or_create_by_username(username)
         except ValueError:
-            return http.HttpResponseNotFound(
-                "No twitter user with username '%s' exists" % username)
+            return http.Http404
 
         unfollows = Unfollow.objects.filter(
             user = user,
