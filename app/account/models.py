@@ -102,6 +102,62 @@ class CustomUser(AbstractUser):
         return self._tweepy_api
 
 
+    @property
+    def cache_key_map(self):
+        return {
+            'mine': '%s-mine-list' % self.username,
+            'unfollowed': '%s-unfollowed-list' % self.username,
+            'unfollows': '%s-list' % self.username,
+        }
+
+
+    def get_cache_key(self, slug):
+        return self.cache_key_map[slug]
+
+
+    def get_and_cache_list(self, slug, force_refresh=False):
+        cache_key = self.get_cache_key(slug)
+        cached = None
+
+        # First check the object cache
+        if getattr(self, cache_key, None) is None or force_refresh:
+
+            # Then check memcache
+            if cache.get(cache_key, None) is None or force_refresh:
+                print "No cache hit"
+                # We have no hit at all, grab it
+                cached = {
+                    'mine': self.unfollow_set.all(),
+                    'unfollowed': self.unfollowed_by.all(),
+                    'unfollows': Unfollow.objects.filter(
+                        user = self,
+                        public = True,
+                        is_active = True)
+                }[slug]
+
+                cache.set(cache_key, cached, 24 * 60 * 60)
+
+            else:
+                print "Memcached  hit"
+
+            if cached is None:
+                cached = cache.get(cache_key)
+
+            setattr(self, cache_key, cached)
+
+        else:
+            print "Object cache hit"
+
+        return cached
+
+    
+    def invalidate_list_caches(self):
+        """Invalidate all list caches.
+
+        """
+        cache.delete_many(self.cache_key_map.values())
+
+
     def unfollow(self, username_to_unfollow, message):
         """Create an Unfollow for this user to `username_to_unfollow`.
 
@@ -138,7 +194,7 @@ class CustomUser(AbstractUser):
                 'name': user.name
             } for
             user in users]
-        
+
 
     def get_following(self, force_refresh=False):
         """Return a list of all people a user is following

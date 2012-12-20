@@ -37,6 +37,12 @@ class Unfollow(models.Model):
             unfollowed_by = unfollowed_by,
             message = message)
 
+        # Clear the cache of this users unfollows
+        user.invalidate_list_caches()
+
+        # Also clear the cache of the unfollowed
+        unfollowed_by.invalidate_list_caches()
+
         # Actualy unfollow them
         unfollowed_by.tweepy_authd_api.destroy_friendship(
             screen_name=user.username)
