@@ -52,9 +52,27 @@ class CustomUser(AbstractUser):
         """Internal method to actually query twitter for followers
 
         """
-        return [friend.screen_name for
+        cursor = 1
+        
+        followers = []
+        # At most, grab 1000 followers
+        while cursor < 100:
+            poop = self.tweepy_user.friends(cursor=cursor)
+
+            print poop 
+
+            results = [friend.screen_name for
                 friend in
-                self.tweepy_user.friends()]
+                self.tweepy_user.friends(cursor=cursor)]
+
+            followers.append(results)
+            cursor += 1
+
+            # Less than 100 results means there's none left to page
+            if len(results) < 100:
+                break
+
+        return followers
 
 
     def get_followers(self, force_refresh=False):
