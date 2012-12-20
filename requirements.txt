@@ -1,7 +1,11 @@
 -e git+https://github.com/django/django.git@034c3551188189cc0faa9a9ccc88a191c855aa45#egg=Django-dev
+South==0.7.6
 distribute==0.6.27
 django-annoying==0.7.6
+django-pylibmc==0.2.3
 django-social-auth==0.7.12
+gunicorn==0.16.1
 ipython==0.13.1
-South==0.7.6
+pylibmc==1.2.3
+tweepy==1.12
 wsgiref==0.1.2
