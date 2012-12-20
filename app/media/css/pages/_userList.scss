@@ -53,7 +53,7 @@
 	#unfollow-message {
 		p {
 			float: left;
-			padding: 1em .75em;
+			padding: 1em .75em 0;
 			font-size: 12px;
 			color: #aaa;
 			font-style: italic;
@@ -104,10 +104,11 @@
 
 #login-hold {
 	background: rgb(0, 47, 63);
-	padding: 1.5em;
+	padding: .4em;
 	border-radius: 0 0 4px 4px;
+	text-align: center;
 
-	.button-style {
+	a {
 		@include grad-blue;
 	    @include box-shadow(0px, 1px, 0px, #F5F5F5, true);
 	    border-bottom: 1px solid #000;
@@ -115,12 +116,14 @@
 	    border-right: none;
 	    border-left: none;
 	    font-weight: bold;
-	    padding: 0.46em 1.85em;
 	    text-shadow: 0 1px #B5DFE7;
-	    width:25%;
-	    border-radius: 2px;
-	    font-size: .875em;
-	    padding: 0.4em .8em .5em;
-	    float: right;
+		width: 100%;
+		border-radius: 2px;
+		font-size: .875em;
+		text-decoration: none;
+		color: rgb(39, 55, 78);
+		display: block;
+		height: 35px;
+		line-height: 35px;
 	}
 }
