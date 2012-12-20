@@ -1,3 +1,5 @@
+import tweepy
+
 from django.conf import settings
 from django.db import models
 
@@ -16,6 +18,14 @@ class Unfollow(models.Model):
 
     @classmethod
     def create_unfollow(cls, user, unfollowed_by, message):
+        # First check if the user actually does follow this user
+        exists = tweepy.api.exists_friendship(
+            user.username, unfollowed_by.username)
+
+        if not exists:
+            raise  tweepy.error.TweepError(
+                'No friendship exists between the users')
+
         # Deactivate any existing active unfollows between these users
         cls.objects.filter(
             user = user,
