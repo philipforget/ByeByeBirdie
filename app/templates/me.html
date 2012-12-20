@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section id="user-list">
+	<div id="user-profile">
+		<img src="http://api.twitter.com/1/users/profile_image/{{ user.username }}" />
+		<div class="middle-profile">
+			<h2>{{ user.name }}</h2>
+			<p class="twitter-handle">@{{ user.username }}</p>
+		</div>
+		<a href="http://www.twitter.com/{{ user.username }}" class="button-style gray">View on Twitter</a>
+	</div>
+	
+    <div id="login-hold">poop</div>
+
+	<h3>Recent Unfollows</h3>
+	<ul id="unfollow-list">
+		{% for unfollow in unfollows %}
+		<li>
+			<img src="http://api.twitter.com/1/users/profile_image/{{ unfollow.unfollowed_by.username }}" />
+			<div class="right-profile">
+				<h2>{{ unfollow.unfollwed_by.name }}</h2>
+				<p>{{ unfollow.message }}</p>
+			</div>
+		</li>
+		{% empty %}
+		<div  id="empty-message">
+			<p>No one has unfollowed you on Bye Bye Birdie yet.</p> 
+			<p>I'm sure someone will come along anyday now. It helps if you tweet incessantly about php.</p>
+		</div>
+		{% endfor %}
+	</ul>
+</section>
+{% endblock %}
+
+{% block bottom_scripts %}
+	<script src="media/js/views/userView.js"></script>
+{% endblock %}

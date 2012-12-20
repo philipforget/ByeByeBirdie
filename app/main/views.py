@@ -18,29 +18,33 @@ def home(request):
     return {}
 
 
-@render_to('user.html')
+@render_to()
 def user_page(request, username):
     """User page
 
     """
-    # Check if we are the same user, cant go there!
+    # Looking at our own unfollows (people who have unfollowed us)
     if request.user.username == username:
-        print 'CREATE THE ME PAGE PLZ'
-        return http.HttpResponseRedirect('http://google.com/eatbutts')
+        template = 'me.html'
+        unfollows = request.user.unfollow_set.all()
+        user = request.user
 
-    try:
-        created, user = get_user_model()\
-            .objects.get_or_create_by_username(username)
-    except ValueError:
-        return http.HttpResponseNotFound(
-            "No twitter user with username '%s' exists" % username)
+    else:
+        template = 'user.html'
+        try:
+            created, user = get_user_model()\
+                .objects.get_or_create_by_username(username)
+        except ValueError:
+            return http.HttpResponseNotFound(
+                "No twitter user with username '%s' exists" % username)
 
-    unfollows = Unfollow.objects.filter(
-        user = user,
-        public = True,
-        is_active = True)
+        unfollows = Unfollow.objects.filter(
+            user = user,
+            public = True,
+            is_active = True)
 
     return {
+        'TEMPLATE': template,
         'user': user,
         'unfollows': unfollows
     }
