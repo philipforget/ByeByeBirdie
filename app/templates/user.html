@@ -20,17 +20,18 @@
 	{% else %}
 	
 		{% if request.user.is_authenticated %}
-		<form id="unfollow-message">
-			<textarea id="message-text" placeholder="Enter your goodbye message here..."></textarea>
-			<p><span id="text-remain"></span> characters left</p>
-			<input type="submit" id="submit-message" class="button-style" value="See ya later sucka" />
-			<input id="user-hidden" type="hidden" value="{{ user.username }}" />
-		</form> 
+            <form action="" method="POST" id="unfollow-message">
+                {% csrf_token %}
+                {{ form.message.errors }}
+                <textarea id="message" name="message" placeholder="Enter your goodbye message here..."></textarea>
+                <input type="submit" id="submit-message" class="button-style" value="See ya later sucka" />
+                <p><span id="text-remain"></span> characters left</p>
+            </form> 
 		{% else %}
 			<div id="login-hold">
 				<a class"button-style" href="{% url 'socialauth_begin' 'twitter'%}">Login with Twitter</a>
 			</div>
-			{% endif %}
+        {% endif %}
 	{% endif %}
 
 	<h3>Recent Unfollows</h3>
@@ -45,7 +46,9 @@
 				<p>{{ unfollow.message }}</p>
 			</div>
 		</li>
-		{% empty %}
+
+
+    {% empty %}
 		<div  id="empty-message">
 			<p>No one has unfollowed <em>{{ user.username }}</em> on Bye Bye Birdie yet.</p> 
 			<p>You can be the first though. No pressure. Actually just do what you want.</p>

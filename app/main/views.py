@@ -6,6 +6,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 
+from .forms import UnfollowForm
 from .models import Unfollow
 
 logger = logging.getLogger(__name__)
@@ -23,8 +24,9 @@ def user_page(request, username):
     """User page
 
     """
-    force_refresh = request.GET.has_key('force_refresh')
     existing_unfollow = None
+    force_refresh = request.GET.has_key('force_refresh')
+    form = None
 
     # Looking at our own unfollows (people who have unfollowed us)
     if request.user.username == username:
@@ -35,11 +37,31 @@ def user_page(request, username):
 
     else:
         template = 'user.html'
+
         try:
             created, user = get_user_model()\
                 .objects.get_or_create_by_username(username)
         except ValueError:
             raise http.Http404
+
+        if request.method == 'POST':
+            form = UnfollowForm({
+                'message': request.POST.get('message', None),
+                'user': user.id,
+                'unfollowed_by': request.user.id,
+            })
+
+            if form.is_valid():
+                try:
+                    request.user.unfollow(
+                        user.username,
+                        form.cleaned_data['message'])
+
+                # If the friendship doesnt exist, fuck it
+                except ValueError:
+                    pass
+
+                return http.HttpResponseRedirect(request.path)
 
         unfollows = user.get_and_cache_list(
             'unfollows', force_refresh=force_refresh)
@@ -54,9 +76,11 @@ def user_page(request, username):
             unfollows = unfollows.exclude(id=existing_unfollow.id)
 
         except (Unfollow.DoesNotExist, IndexError):
-            pass
+            if form is None:
+                form = UnfollowForm()
 
     return {
+        'form': form,
         'existing_unfollow': existing_unfollow,
         'TEMPLATE': template,
         'user': user,
