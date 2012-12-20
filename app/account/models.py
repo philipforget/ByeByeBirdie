@@ -1,18 +1,43 @@
 import tweepy
 
 from django.conf import settings
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, UserManager
 from django.core.cache import cache
 from django.db import models
 
 from social_auth.models import UserSocialAuth
 
+from main.models import Unfollow
+
+
+
+class CustomUserManager(UserManager):
+
+
+    def get_or_create_by_username(self, username):
+        """Get a user by username. If one doesn't exist, create it.
+
+        Return a tuple of (created <bool>, user) like other Django
+        get_or_create methods.
+        """
+        user = None
+        created = False
+        try:
+            user = self.get(username=username)
+        except CustomUser.DoesNotExist:
+            user = self.create_user(username)
+            created = True
+            # need to set name?
+        return created, user
+
 
 class CustomUser(AbstractUser):
-    name = models.CharField(max_length=40)
+    name = models.CharField(max_length=40, blank=True)
     is_opted_out = models.BooleanField(default=False)
     is_banned = models.BooleanField(default=False)
     has_authed_in = models.BooleanField(default=False)
+
+    objects = CustomUserManager()
 
 
     @property
@@ -37,9 +62,10 @@ class CustomUser(AbstractUser):
         return auth.tokens
 
 
-    def unfollow(self, to_follow):
-        """Create an Unfollow for this user
+    def unfollow(self, to_unfollow):
+        """Create an Unfollow for this user to Twitter user `to_unfollow`.
 
+        `to_unfollow` should be a string of a Twitter username.
         """
         pass
 
