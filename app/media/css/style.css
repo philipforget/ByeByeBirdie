@@ -293,18 +293,46 @@ textarea {
     height: 35px;
     line-height: 35px; }
 
+body,
+html {
+  width: 100%;
+  height: 100%; }
+
 body {
   background: url(../images/bg.png);
   line-height: 1;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 300;
   font-size: 16px; }
-  body#lost {
+  body#lost, body#wrong {
+    width: 100%;
+    height: 100%;
     background: url("../images/404.jpg") no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: cover; }
+    background-size: cover;
+    padding: 32% 16%; }
+    body#lost h4, body#wrong h4 {
+      font-family: helvetica;
+      font-weight: bold;
+      color: white;
+      font-size: 39px; }
+    body#lost p, body#wrong p {
+      color: white;
+      margin: 8px 0; }
+      body#lost p a, body#wrong p a {
+        color: #ecbcc1;
+        font-weight: bold; }
+  body#wrong {
+    background: url("../images/500.jpg") no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding: 15% 15%; }
+    body#wrong p {
+      text-shadow: 1px 2px 2px black; }
 
 header#large-header {
   margin: 50px auto 0;
