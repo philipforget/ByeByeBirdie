@@ -258,6 +258,11 @@ header {
         margin-top: 5px;
     }
 
+    &.suck-up-border {
+        border-top: 0.35em solid #002F3F;
+        margin-top: 5px;
+    }
+
     p {
         &:first-child {
             em {

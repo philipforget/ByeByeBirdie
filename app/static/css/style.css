@@ -561,6 +561,9 @@ header#small-header {
   border-top: 1px solid #e9d4d4; }
   #empty-message.suck-up {
     margin-top: 5px; }
+  #empty-message.suck-up-border {
+    border-top: 0.35em solid #002F3F;
+    margin-top: 5px; }
   #empty-message p:first-child em {
     color: #ce5757;
     font-style: italic; }
