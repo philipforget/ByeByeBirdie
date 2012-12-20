@@ -39,7 +39,7 @@ def unfollow(request):
         return HttpResponseBadRequest(
             'no "message" post paramater found')
 
-    m = forms.TextField(max_length=500)
+    m = forms.CharField(max_length=500)
 
     try:
         message = m.clean(request.POST['message'])
