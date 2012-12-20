@@ -50,6 +50,11 @@ def user_page(request, username):
     }
 
 
+@render_to('mine.html')
+def mine(request):
+    pass
+
+
 def logout(request):
     """Logout current user and redirect to homepage."""
     auth_logout(request)
