@@ -56,14 +56,13 @@
                     filterPatt = settings.caseSensitive ? new RegExp(sFilterTxt, "g") : new RegExp(sFilterTxt, "ig");
                 $(results).html('').hide();
                 
+
                 for (i = 0; i < resultObjects.length; i += 1) {
                     
                     // set vars for data object and do something with them
                     var item = $('<div />'),
-                        id = resultObjects[i].id,
                         username = resultObjects[i].name,
-                        twitterHandle = resultObjects[i].username,
-                        userImage = resultObjects[i].avatar_url;
+                        twitterHandle = resultObjects[i].screen_name;
 
                     // make letters enter bold
                     if (settings.highlightMatches === true) {
@@ -78,7 +77,7 @@
                     
                     // handle user image display
                     if (typeof userImage === 'string') {
-                        $(item).prepend('<img src="' + userImage + '" />');
+                        $(item).prepend('http://api.twitter.com/1/users/profile_image/' + twitterHandle);
                     }
                     
                     // used for zebra striping and setting the selected row color
@@ -98,6 +97,7 @@
                         break;
                     }
                 }
+                
                 if ($('div', results).length > 0) {
                     currentSelection = undefined;
                     $(results).show().css('height', 'auto');
