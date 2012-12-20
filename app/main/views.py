@@ -1,10 +1,11 @@
 import logging
 
+from annoying.decorators import render_to
+from django.contrib.auth import get_user_model
 from django.contrib.auth import logout as auth_logout
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
 
-from annoying.decorators import render_to
+from .models import Unfollow
 
 
 logger = logging.getLogger(__name__)
@@ -17,9 +18,25 @@ def home(request):
     return {'request': request}
 
 
+@render_to('user.html')
 def user_page(request, username):
-    """User page"""
-    return render(request, 'user.html')
+    """User page
+
+    """
+    # Check if we are the same user, cant go there!
+    if request.user.username == username:
+        print 'CREATE THE ME PAGE PLZ'
+        return HttpResponseRedirect('http://google.com/eatbutts')
+
+    created, user = get_user_model().objects.get_or_create_by_username(username)
+    unfollows = Unfollow.objects.filter(
+        user = user,
+        public = True)
+
+    return {
+        'user': user,
+        'unfollows': unfollows
+    }
 
 
 def logout(request):

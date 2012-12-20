@@ -22,6 +22,8 @@ class CustomUserManager(UserManager):
         Return a tuple of (created <bool>, user) like other Django
         get_or_create methods.
         """
+        # check if the user exists in twitter first
+
         user = None
         created = False
         try:
