@@ -38,7 +38,9 @@
 	<ul id="unfollow-list">
 		{% for unfollow in unfollows %}
 		<li>
-			<img src="http://api.twitter.com/1/users/profile_image/{{ unfollow.unfollowed_by.username }}" />
+			<a href="/{{ unfollow.unfollowed_by.username }}">
+				<img src="http://api.twitter.com/1/users/profile_image/{{ unfollow.unfollowed_by.username }}" />
+			</a>
 			<div class="right-profile">
 				<h2>{{ unfollow.unfollwed_by.name }}</h2>
 				<p>{{ unfollow.message }}</p>
