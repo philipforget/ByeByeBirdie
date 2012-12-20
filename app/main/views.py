@@ -6,6 +6,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 
+from .models import Unfollow
 
 logger = logging.getLogger(__name__)
 
@@ -23,6 +24,7 @@ def user_page(request, username):
 
     """
     force_refresh = request.GET.has_key('force_refresh')
+    existing_unfollow = None
 
     # Looking at our own unfollows (people who have unfollowed us)
     if request.user.username == username:
@@ -42,7 +44,14 @@ def user_page(request, username):
         unfollows = user.get_and_cache_list(
             'unfollows', force_refresh=force_refresh)
 
+        try:
+            existing_unfollow = Unfollow.objects.get(
+                user=user, unfollowed_by=request.user)
+        except Unfollow.DoesNotExist:
+            pass
+
     return {
+        'existing_unfollow': existing_unfollow,
         'TEMPLATE': template,
         'user': user,
         'unfollows': unfollows
