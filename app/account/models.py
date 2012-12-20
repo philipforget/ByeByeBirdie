@@ -1,3 +1,5 @@
+import logging
+
 import tweepy
 
 from django.conf import settings
@@ -8,6 +10,10 @@ from django.db import models
 from social_auth.models import UserSocialAuth
 
 from main.models import Unfollow
+
+
+
+logger = logging.getLogger(__name__)
 
 
 
@@ -55,19 +61,27 @@ class CustomUser(AbstractUser):
 
         Returns a dict with keys `oauth_token` and `oauth_token_secret`.
         """
-        try:
-            auth = UserSocialAuth.objects.get(user=self)
-        except UserSocialAuth.ObjectDoesNotExist:
-            return None
+        auth = UserSocialAuth.objects.get(user=self)
         return auth.tokens
 
 
-    def unfollow(self, to_unfollow):
-        """Create an Unfollow for this user to Twitter user `to_unfollow`.
+    def unfollow(self, to_unfollow_username):
+        """Create an Unfollow for this user to `to_unfollow_username`.
 
-        `to_unfollow` should be a string of a Twitter username.
+        `to_unfollow_username` should be a string of a Twitter username.
         """
-        pass
+        created, to_unfollow_user = \
+            CustomUser.objects.get_or_create_by_username(to_unfollow_username)
+
+        try:
+            self.tweepy_authd_api.destroy_friendship(
+                screen_name=to_unfollow_username)
+        except tweepy.error.TweepError, e:
+            import pdb; pdb.set_trace()
+            logger.warn('Error destroying friendships. %s', e)
+        else:
+            Unfollow.objects.create(user=to_unfollow_user,
+                unfollowed_by=self)
 
 
     @property
@@ -75,54 +89,50 @@ class CustomUser(AbstractUser):
         """Get an authenticated `tweepy.api.API` object
 
         """
-        tokens = self.tokens
+        if getattr(self, '_tweety_api', None) is None:
+            access_token = self.tokens['oauth_token']
+            access_token_secret = self.tokens['oauth_token_secret']
 
-        # lol paranoia
-        if tokens is None:
-            # derp what do here?
-            return None
+            try:
+                consumer_key = settings.TWITTER_CONSUMER_KEY
+                consumer_secret = settings.TWITTER_CONSUMER_SECRET
+            except AttributeError:
+                raise AttributeError(
+                    "No consumer key or secret found. "
+                    "Please configure your settings to include them")
 
-        access_token = tokens.get('oauth_token', None)
-        access_token_secret = tokens.get('oauth_token_secret', None)
-        if access_token is None or access_token_secret is None:
-            # derp what do here?
-            return None
+            auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+            auth.set_access_token(access_token, access_token_secret)
 
-        consumer_key = getattr(settings, 'TWITTER_CONSUMER_KEY', None)
-        consumer_secret = getattr(settings, 'TWITTER_CONSUMER_SECRET', None)
-        if consumer_key is None or consumer_secret is None:
-            # derp what do here?
-            return None
+            self._tweepy_api = tweepy.API(auth)
 
-        auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-        auth.set_access_token(access_token, access_token_secret)
-
-        return tweepy.API(auth)
+        return self._tweepy_api
 
 
-    @property
-    def tweepy_user(self):
-        return tweepy.api.get_user(self.username)
-
-
-    def _grab_followers_from_twitter(self):
-        """Internal method to actually query twitter for followers
+    def _grab_following_from_twitter(self):
+        """Internal method to actually query twitter for friends
 
         """
-        return [friend.screen_name for
-                friend in
-                self.tweepy_user.friends()]
+
+        results = self.tweepy_authd_api.friends(cursor=-1)[0]
+
+        return [
+            {
+                'screen_name': result.screen_name,
+                'name': result.name
+            } for
+            result in results]
 
 
-    def get_followers(self, force_refresh=False):
-        cache_key = '%s-followers' % self.username
+    def get_following(self, force_refresh=False):
+        cache_key = '%s-following' % self.username
 
-        if (getattr(self, '_followers', None) is None or
+        if (getattr(self, '_following', None) is None or
             cache.get(cache_key, None) is None or
             force_refresh):
-            followers = self._grab_followers_from_twitter()
+            following = self._grab_following_from_twitter()
 
-            cache.set(cache_key, followers, 7 * 24 * 60 * 60)
-            self._followers = followers
+            cache.set(cache_key, following, 7 * 24 * 60 * 60)
+            self._following = following
 
-        return self._followers
+        return self._following

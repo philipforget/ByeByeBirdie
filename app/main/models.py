@@ -11,4 +11,5 @@ class Unfollow(models.Model):
     anonymous = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True)
 
-
+    class Meta(object):
+        unique_together = (('user', 'unfollowed_by'),)
