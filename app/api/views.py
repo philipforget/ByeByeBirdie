@@ -58,22 +58,3 @@ def unfollow(request):
         'success': True,
         'unfollow': unfollow.serialize()
     }
-
-
-@login_required
-@ajax_request
-@csrf_exempt
-def opt_out(request):
-    """Allow a user to opt out of bbb.
-
-    """
-    if request.method != 'POST':
-        return HttpResponseNotAllowed(
-            'Accepted methods: POST')
-
-    request.user.is_opted_out = True
-    request.user.save()
-
-    return {
-        'success': True,
-    }
