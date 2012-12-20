@@ -6,10 +6,9 @@ from django.contrib.auth.models import AbstractUser, UserManager
 from django.core.cache import cache
 from django.db import models
 from social_auth.models import UserSocialAuth
+from tweepy.error import TweepError
 
 from main.models import Unfollow
-
-
 
 logger = logging.getLogger(__name__)
 
@@ -22,16 +21,24 @@ class CustomUserManager(UserManager):
         Return a tuple of (created <bool>, user) like other Django
         get_or_create methods.
         """
-        # check if the user exists in twitter first
-
         user = None
         created = False
         try:
             user = self.get(username=username)
+
         except CustomUser.DoesNotExist:
-            user = self.create_user(username)
+            try:
+                twitter_user = tweepy.api.get_user(username)
+
+            except TweepError:
+                raise ValueError("No user '%s' found" % username)
+
+            user = self.create_user(
+                username = username,
+                name = twitter_user.name)
+
             created = True
-            # need to set name?
+
         return created, user
 
 

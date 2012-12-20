@@ -3,7 +3,7 @@ import logging
 from annoying.decorators import render_to
 from django.contrib.auth import get_user_model
 from django.contrib.auth import logout as auth_logout
-from django.http import HttpResponseRedirect
+from django import http
 
 from .models import Unfollow
 
@@ -26,9 +26,15 @@ def user_page(request, username):
     # Check if we are the same user, cant go there!
     if request.user.username == username:
         print 'CREATE THE ME PAGE PLZ'
-        return HttpResponseRedirect('http://google.com/eatbutts')
+        return http.HttpResponseRedirect('http://google.com/eatbutts')
 
-    created, user = get_user_model().objects.get_or_create_by_username(username)
+    try:
+        created, user = get_user_model()\
+            .objects.get_or_create_by_username(username)
+    except ValueError:
+        return http.HttpResponseNotFound(
+            "No twitter user with username '%s' exists" % username)
+
     unfollows = Unfollow.objects.filter(
         user = user,
         public = True)
@@ -42,4 +48,4 @@ def user_page(request, username):
 def logout(request):
     """Logout current user and redirect to homepage."""
     auth_logout(request)
-    return HttpResponseRedirect('/')
+    return http.HttpResponseRedirect('/')
