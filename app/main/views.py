@@ -45,9 +45,15 @@ def user_page(request, username):
             'unfollows', force_refresh=force_refresh)
 
         try:
-            existing_unfollow = Unfollow.objects.get(
-                user=user, unfollowed_by=request.user)
-        except Unfollow.DoesNotExist:
+            existing_unfollow = Unfollow.objects.filter(
+                user = user,
+                unfollowed_by = request.user,
+                is_active = True)[0]
+
+            # Dont show your own in the list
+            unfollows = unfollows.exclude(id=existing_unfollow.id)
+
+        except (Unfollow.DoesNotExist, IndexError):
             pass
 
     return {
