@@ -1,18 +1,54 @@
+import logging
+
 import tweepy
 
 from django.conf import settings
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, UserManager
 from django.core.cache import cache
 from django.db import models
 
 from social_auth.models import UserSocialAuth
 
+from main.models import Unfollow
+
+
+
+logger = logging.getLogger(__name__)
+
+
+
+class CustomUserManager(UserManager):
+    def get_or_create_by_username(self, username):
+        """Get a user by username. If one doesn't exist, create it.
+
+        Return a tuple of (created <bool>, user) like other Django
+        get_or_create methods.
+        """
+        user = None
+        created = False
+        try:
+            user = self.get(username=username)
+        except CustomUser.DoesNotExist:
+            user = self.create_user(username)
+            created = True
+            # need to set name?
+        return created, user
+
 
 class CustomUser(AbstractUser):
-    name = models.CharField(max_length=40)
+    name = models.CharField(max_length=40, blank=True)
     is_opted_out = models.BooleanField(default=False)
     is_banned = models.BooleanField(default=False)
     has_authed_in = models.BooleanField(default=False)
+
+    objects = CustomUserManager()
+
+
+    def serialize(self):
+        return {
+            'name': self.name,
+            'screen_name': self.username
+        }
 
 
     @property
@@ -57,6 +93,21 @@ class CustomUser(AbstractUser):
             self._tweepy_api = tweepy.API(auth)
 
         return self._tweepy_api
+
+
+    def unfollow(self, username_to_unfollow, message):
+        """Create an Unfollow for this user to `username_to_unfollow`.
+
+        `username_to_unfollow` should be a string of a Twitter username.
+        """
+        created, to_unfollow_user = \
+            CustomUser.objects.get_or_create_by_username(username_to_unfollow)
+
+        self.tweepy_authd_api.destroy_friendship(
+            screen_name=username_to_unfollow)
+
+        return Unfollow.objects.create(user=to_unfollow_user,
+            unfollowed_by=self, message=message)
 
 
     def _grab_following_from_twitter(self):
