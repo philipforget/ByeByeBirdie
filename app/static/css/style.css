@@ -559,6 +559,8 @@ header#small-header {
   text-align: center;
   border-bottom: 1px solid #e9d4d4;
   border-top: 1px solid #e9d4d4; }
+  #empty-message.suck-up {
+    margin-top: 5px; }
   #empty-message p:first-child em {
     color: #ce5757;
     font-style: italic; }

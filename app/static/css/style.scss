@@ -254,6 +254,10 @@ header {
     border-bottom: 1px solid rgb(233, 212, 212);
     border-top: 1px solid rgb(233, 212, 212);
 
+    &.suck-up {
+        margin-top: 5px;
+    }
+
     p {
         &:first-child {
             em {

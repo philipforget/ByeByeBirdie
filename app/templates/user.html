@@ -21,7 +21,7 @@
 	
 		{% if request.user.is_authenticated %}
 			{% if user.is_opted_out %}
-				<div  id="empty-message">
+				<div  id="empty-message" class="suck-up">
 					<p><em>{{ user.username }}</em> has chosen to opt out of Bye Bye Birdie.</p> 
 					<p>We respect that decision and so should you.  Carry on friend.</p>
 				</div>
