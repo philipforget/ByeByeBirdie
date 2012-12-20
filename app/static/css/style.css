@@ -264,7 +264,8 @@ textarea {
         #user-list #unfollow-list li .right-profile h2 {
           font-weight: bold;
           font-size: 14px;
-          margin-bottom: 5px; }
+          margin-bottom: 5px;
+          margin-top: 8px; }
         #user-list #unfollow-list li .right-profile p {
           font-family: Arial, sans-serif;
           color: #535353;
@@ -313,9 +314,10 @@ textarea {
     text-align: left;
     font-size: 12px;
     text-transform: uppercase;
-    color: #eeeeee;
+    color: #dddddd;
     font-weight: bold;
-    padding: .5em; }
+    padding: .5em;
+    text-shadow: 1px 1px 1px black; }
   #lower-status p {
     text-align: left;
     padding: 0 .5em;
