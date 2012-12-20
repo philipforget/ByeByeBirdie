@@ -10,34 +10,31 @@
 		</div>
 		<a href="http://www.twitter.com/{{ user.username }}" class="button-style gray">View on Twitter</a>
 	</div>
+	
+	{{request}}
+	{% if request.user.is_authenticated %}
 	<form id="unfollow-message">
 		<textarea id="message-text" placeholder="Enter your goodbye message here..."></textarea>
 		<p><span id="text-remain"></span> characters left</p>
 		<input type="submit" id="submit-message" class="button-style" value="See ya later sucka" />
 	</form> 
+	{% else %}
+		<a href="">Login</a>
+	{% endif %}
+
 	<h3>Recent Unfollows</h3>
 	<ul id="unfollow-list">
+		{% for unfollow in unfollows %}
 		<li>
-			<img src="http://api.twitter.com/1/users/profile_image/philipforget" />
+			<img src="http://api.twitter.com/1/users/profile_image/{{ unfollow.unfollowed_by.username }}" />
 			<div class="right-profile">
-				<h2>Philip Forget</h2>
-				<p>Fuck you Kenneth.  You dirty fucking north Virginian bitch. You live to annoy others and you live well.  Your a huge JNCO wearing ass monkey.  I hope you forget how to code tomorrow. Peace Out.</p>
+				<h2>{{ unfollow.unfollwed_by.name }}</h2>
+				<p>{{ unfollow.message }}</p>
 			</div>
 		</li>
-		<li>
-			<img src="http://api.twitter.com/1/users/profile_image/cshoe_" />
-			<div class="right-profile">
-				<h2>Chris Shoemaker</h2>
-				<p>Fuck you Kenneth.  You dirty fucking north Virginian bitch. You live to annoy others and you live well.  Your a huge JNCO wearing ass monkey.  I hope you forget how to code tomorrow. Peace Out.</p>
-			</div>
-		</li>
-		<li>
-			<img src="http://api.twitter.com/1/users/profile_image/gooeyblob" />
-			<div class="right-profile">
-				<h2>Kevin O'Connor</h2>
-				<p>Fuck you Kenneth.  You dirty fucking north Virginian bitch. You live to annoy others and you live well.  Your a huge JNCO wearing ass monkey.  I hope you forget how to code tomorrow. Peace Out.</p>
-			</div>
-		</li>
+		{% empty %}
+			no one unfollowed this bitch yet.
+		{% endfor %}
 	</ul>
 </section>
 {% endblock %}
