@@ -1,5 +1,17 @@
-<form action="" method="POST">
-{% csrf_token %}
-{{ form.as_p }}
-<input type="submit">
-</form>
+{% extends "base.html" %}
+
+{% block content %}
+<div class="center-me">
+	<div id="empty-message">
+		<p>Listen. We understand we're not for everybody.</p>
+		<p>Check the box below to opt out. If you'd like to come back just uncheck it and you're back in.</p>
+	</div>
+
+	<form action="" method="POST">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<input type="submit" value="Save This">
+	</form>
+</div>
+
+{% endblock %}

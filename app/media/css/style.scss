@@ -210,6 +210,36 @@ header {
     }
 }
 
+.center-me {
+    width: 430px;
+    margin: 0 auto;
+
+    #empty-message {
+        margin-top: -50px;
+        margin-bottom: 20px;
+    }
+
+    form {
+        p {
+            float: left;
+            padding: .4em .75em 0;
+
+            label {
+                color: rgb(200, 235, 235);
+                font-size: 12px;
+                text-transform: uppercase;
+                font-weight: bold;
+            }
+        }
+
+        input[type='submit'] {
+            display: block;
+            width: 185px;
+            float: right;
+        }
+    }
+}
+
 #empty-message {
     font-size: 14px;
     font-weight: normal;
