@@ -65,7 +65,6 @@ header {
 }
 
 #login {
-    width: 60%;
     min-width: 480px;
     margin: -90px auto 0;
     text-align: center;
@@ -82,26 +81,91 @@ header {
     }
 
     .home-bottom {
-        margin-top: 100px;
-        background: url(../images/home_bg_shadow.png) no-repeat center 24px;
-        height: 100px;
+        width: 90%;
+        margin: 100px auto 0;
+        max-width: 840px;
+        min-width: 800px;
 
-        a {
-            @include grad-blue;
-            @include box-shadow(0px, 1px, 0px, #F5F5F5, true);
-            font-weight: bold;
-            border-radius: 2px;
-            font-size: 1.2em;
-            padding: .75em 3.5em;
-            color: white;
-            text-shadow: 1px 1px 0 $dark-blue;
-            border-radius: 55px;
-            border: 4px solid $dark-blue;
-            text-decoration: none;
-            
-            &:hover {
-                @include grad-blue-hover;
+        .home-left {
+            float: left;
+            width: 40%;
+            padding-top: 20px;
+
+            p {
+                font-weight: bold;
+                font-size: 24px;
+                text-align: left;
+                color: rgb(97, 97, 97);
+                line-height: 1.1;
+
+                em {
+                    font-style: italic;
+                }
+
+                span {
+                    font-size: 16px;
+                    font-weight: normal;
+                }
             }
+        }
+
+        .home-right {
+            padding-top: 48px;
+            float: right;
+            background: url(../images/home_bg_shadow.png) no-repeat center bottom;
+            height: 50px;
+            width: 40%;
+
+             a {
+                @include grad-blue;
+                @include box-shadow(0px, 1px, 0px, #F5F5F5, true);
+                font-weight: bold;
+                border-radius: 2px;
+                font-size: 1.2em;
+                padding: .75em 3.5em;
+                color: white;
+                text-shadow: 1px 1px 0 $dark-blue;
+                border-radius: 55px;
+                border: 4px solid $dark-blue;
+                text-decoration: none;
+                
+                &:hover {
+                    @include grad-blue-hover;
+                }
+            }
+        }
+    }
+}
+
+#home-tile-cover {
+    background: rgba(255, 255, 255, 0.77);
+    position: absolute;
+    z-index: -1;
+    width: 105%;
+    height: 249px;
+    top: 300px;
+}
+
+#home-tile {
+    position: absolute;
+    z-index: -2;
+    width: 105%;
+    height: 247px;
+    overflow: hidden;
+    top: 300px;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+
+    li {
+        float: left;
+        margin-left: 2px;
+        margin-bottom: 2px;
+        width: 60px;
+        height: 60px;
+
+        img {
+            width: 60px;
+            height: 60px;
         }
     }
 }
@@ -126,64 +190,6 @@ header {
 
     span.ui-helper-hidden-accessible {
         display: none;
-    }
-}
-
-.ui-autocomplete {
-    width: 300px;
-    background: white;
-    overflow: auto;
-    max-height: 280px;
-    border-left: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    border-right: 1px solid #ccc;
-
-    .ui-menu-item {
-        clear: both;
-        border-bottom: 1px solid #e7e7e7;
-        overflow: hidden;
-        @include box-sizing;
-
-        &:hover {
-            background: #eee;
-        }
-
-        &>a {
-            overflow: hidden;
-            display: block;
-            padding: 5px .5em;
-            margin: 0;
-
-            &.ui-state-focus {
-                background: #eee;
-            }
-
-            img {
-                float: left;
-                width: 40px;
-                height: 40px;
-                border-radius: 4px;
-            }
-
-            .user-right {
-                padding-left: 20px;
-                float: left;
-                padding-top: 3px;
-
-                p {
-                    &:first-child {
-                        font-weight: bold;
-                        font-size: 14px;
-                    }
-
-                    &:last-child {
-                        font-size: 12px;
-                        color: #777;
-                        margin-top: 3px;
-                    }
-                }
-            }
-        }
     }
 }
 

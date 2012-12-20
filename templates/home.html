@@ -7,7 +7,8 @@
 <div id="unfollow" class="unfollow-form">
 	<form>
 		<input id="unfollow-input" type="text" placeholder="who are you unfollowing?"/>
-		<input type="submit" value="Unfollow" />
+		<input id="unfollow-hidden" type="hidden" />
+		<input type="submit" value="Let's Do It" />
 	</form>
 	<span class="shadow-bottom large"></span>
 </div>
@@ -15,11 +16,20 @@
 {% else %}
 
 <div id="login">
+	<div id="home-tile-cover"></div>
+	<ul id="home-tile">
+		<!-- tiles go here -->
+	</ul>
 	<div class="home-top">
 		<p>Let em' know why your flying the coop.</p>
 	</div>
 	<div class="home-bottom">
-		<a class"button-style" href="{% url 'socialauth_begin' 'twitter'%}">Login with Twitter</a>
+		<div class="home-left">
+			<p><em>Bye Bye Birdie</em> let's you leave a message for anyone you unfollow. <span>Let em' have it.</p>
+		</div>
+		<div class="home-right">
+			<a class"button-style" href="{% url 'socialauth_begin' 'twitter'%}">Login with Twitter</a>
+		</div>
 	</div>
 </div>
 
