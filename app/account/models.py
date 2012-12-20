@@ -128,6 +128,7 @@ class CustomUser(AbstractUser):
                 # We have no hit at all, grab it
                 cached = {
                     'mine': self.unfollowed_by.filter(
+                        user__is_opted_out = False,
                         unfollowed_by__is_opted_out = False),
 
                     'unfollowed': self.unfollow_set.filter(
