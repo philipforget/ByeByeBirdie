@@ -1,5 +1,8 @@
-from django.db import models
+import tweepy
+
 from django.contrib.auth.models import AbstractUser
+from django.core.cache import cache
+from django.db import models
 
 from social_auth.models import UserSocialAuth
 
@@ -20,16 +23,9 @@ class CustomUser(AbstractUser):
             self.username)
 
 
-    def unfollow(self, unfollowed_by):
-        """Create an Unfollow for this user
-
-        """
-        pass
-
-
     @property
     def tokens(self):
-        """Get tokens for user.
+        """Get twitter auth tokens for user.
 
         Returns a dict with keys `oauth_token` and `oauth_token_secret`.
         """
@@ -38,3 +34,38 @@ class CustomUser(AbstractUser):
         except UserSocialAuth.ObjectDoesNotExist:
             return None
         return auth.tokens
+
+
+    def unfollow(self, unfollowed_by):
+        """Create an Unfollow for this user
+
+        """
+        pass
+
+
+    @property
+    def tweepy_user(self):
+        return tweepy.api.get_user(self.username)
+
+
+    def _grab_followers_from_twitter(self):
+        """Internal method to actually query twitter for followers
+
+        """
+        return [friend.screen_name for
+                friend in
+                self.tweepy_user.friends()]
+
+
+    def get_followers(self, force_refresh=False):
+        cache_key = '%s-followers' % self.username
+
+        if (getattr(self, '_followers', None) is None or
+            cache.get(cache_key, None) is None or
+            force_refresh):
+            followers = self._grab_followers_from_twitter()
+
+            cache.set(cache_key, followers, 7 * 24 * 60 * 60)
+            self._followers = followers
+
+        return self._followers
