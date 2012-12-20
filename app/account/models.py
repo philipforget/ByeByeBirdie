@@ -128,9 +128,14 @@ class CustomUser(AbstractUser):
                 # We have no hit at all, grab it
                 cached = {
                     'mine': self.unfollowed_by.all(),
-                    'unfollowed': self.unfollow_set.all(),
+
+                    'unfollowed': self.unfollow_set.filter(
+                        user__is_opted_out = False,
+                        unfollowed_by__is_opted_out = False),
+
                     'unfollows': Unfollow.objects.filter(
                         user = self,
+                        unfollowed_by__is_opted_out = False,
                         public = True,
                         is_active = True)
                 }[slug]
