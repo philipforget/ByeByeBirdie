@@ -1,5 +1,6 @@
 import tweepy
 
+from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.core.cache import cache
 from django.db import models
@@ -36,11 +37,41 @@ class CustomUser(AbstractUser):
         return auth.tokens
 
 
-    def unfollow(self, unfollowed_by):
+    def unfollow(self, to_follow):
         """Create an Unfollow for this user
 
         """
         pass
+
+
+    @property
+    def tweepy_authd_api(self):
+        """Get an authenticated `tweepy.api.API` object
+
+        """
+        tokens = self.tokens
+
+        # lol paranoia
+        if tokens is None:
+            # derp what do here?
+            return None
+
+        access_token = tokens.get('oauth_token', None)
+        access_token_secret = tokens.get('oauth_token_secret', None)
+        if access_token is None or access_token_secret is None:
+            # derp what do here?
+            return None
+
+        consumer_key = getattr(settings, 'TWITTER_CONSUMER_KEY', None)
+        consumer_secret = getattr(settings, 'TWITTER_CONSUMER_SECRET', None)
+        if consumer_key is None or consumer_secret is None:
+            # derp what do here?
+            return None
+
+        auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+        auth.set_access_token(access_token, access_token_secret)
+
+        return tweepy.API(auth)
 
 
     @property
