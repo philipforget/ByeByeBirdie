@@ -20,13 +20,20 @@
 	{% else %}
 	
 		{% if request.user.is_authenticated %}
-            <form action="" method="POST" id="unfollow-message">
-                {% csrf_token %}
-                {{ form.message.errors }}
-                <textarea id="message" name="message" placeholder="Enter your goodbye message here..."></textarea>
-                <input type="submit" id="submit-message" class="button-style" value="Goodbye, My Friend" />
-                <p><span id="text-remain"></span> characters left</p>
-            </form> 
+			{% if user.is_opted_out %}
+				<div  id="empty-message">
+					<p><em>{{ user.username }}</em> has chosen to opt out of Bye Bye Birdie.</p> 
+					<p>We respect that decision and so should you.  Carry on friend.</p>
+				</div>
+	        {% else %}
+	        	<form action="" method="POST" id="unfollow-message">
+	                {% csrf_token %}
+	                <textarea id="message" name="message" placeholder="Enter your goodbye message here..."></textarea>
+	                <input type="submit" id="submit-message" class="button-style" value="Goodbye, My Friend" />
+	                <p><span id="text-remain"></span> characters left</p>
+	                {{ form.message.errors }}
+	            </form> 	
+			{% endif %}
 		{% else %}
 			<div id="login-hold">
 				<a class"button-style" href="{% url 'socialauth_begin' 'twitter'%}">Login with Twitter</a>
@@ -34,27 +41,29 @@
         {% endif %}
 	{% endif %}
 
-	<h3>Recent Unfollows</h3>
-	<ul id="unfollow-list">
-		{% for unfollow in unfollows %}
-		<li>
-			<a href="/{{ unfollow.unfollowed_by.username }}">
-				<img src="http://api.twitter.com/1/users/profile_image/{{ unfollow.unfollowed_by.username }}" />
-			</a>
-			<div class="right-profile">
-				<h2>{{ unfollow.unfollwed_by.name }}</h2>
-				<p>{{ unfollow.message }}</p>
+	{% if user.is_opted_out %}
+
+	{% else %}
+		<h3>Recent Unfollows</h3>
+		<ul id="unfollow-list">
+			{% for unfollow in unfollows %}
+			<li>
+				<a href="/{{ unfollow.unfollowed_by.username }}">
+					<img src="http://api.twitter.com/1/users/profile_image/{{ unfollow.unfollowed_by.username }}" />
+				</a>
+				<div class="right-profile">
+					<h2>{{ unfollow.unfollwed_by.name }}</h2>
+					<p>{{ unfollow.message }}</p>
+				</div>
+			</li>
+	    	{% empty %}
+			<div  id="empty-message">
+				<p>No one has unfollowed <em>{{ user.username }}</em> on Bye Bye Birdie yet.</p> 
+				<p>You can be the first though. No pressure. Actually just do what you want.</p>
 			</div>
-		</li>
-
-
-    {% empty %}
-		<div  id="empty-message">
-			<p>No one has unfollowed <em>{{ user.username }}</em> on Bye Bye Birdie yet.</p> 
-			<p>You can be the first though. No pressure. Actually just do what you want.</p>
-		</div>
-		{% endfor %}
-	</ul>
+			{% endfor %}
+		</ul>
+	{% endif %}
 </section>
 {% endblock %}
 

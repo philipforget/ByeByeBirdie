@@ -55,6 +55,8 @@
 	}
 
 	#unfollow-message {
+		position: relative;
+
 		p {
 			float: left;
 			padding: 1em .75em 0;
@@ -190,5 +192,21 @@
 				color: #eee;
 			}
 		}
+	}
+}
+
+.errorlist {
+	position: absolute;
+	top: 108px;
+	left: 6px;
+
+	li {
+		font-size: 11px;
+		background: rgb(233, 193, 193);
+		padding: .4em .8em;
+		color: white;
+		font-family: arial;
+		border-top: 1px solid rgb(247, 98, 98);
+		border-right: 1px solid rgb(247, 98, 98);
 	}
 }

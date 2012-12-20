@@ -228,12 +228,14 @@ textarea {
         text-shadow: 0px 1px 2px #2C2C2C; }
       #user-list #user-profile .middle-profile p {
         font-size: 14px; }
-  #user-list #unfollow-message p {
-    float: left;
-    padding: 1em .75em 0;
-    font-size: 12px;
-    color: #aaa;
-    font-style: italic; }
+  #user-list #unfollow-message {
+    position: relative; }
+    #user-list #unfollow-message p {
+      float: left;
+      padding: 1em .75em 0;
+      font-size: 12px;
+      color: #aaa;
+      font-style: italic; }
   #user-list h3 {
     position: relative;
     text-transform: uppercase;
@@ -337,6 +339,19 @@ textarea {
       #lower-status p.message:before, #lower-status p.message:after {
         content: '"';
         color: #eee; }
+
+.errorlist {
+  position: absolute;
+  top: 108px;
+  left: 6px; }
+  .errorlist li {
+    font-size: 11px;
+    background: #e9c1c1;
+    padding: .4em .8em;
+    color: white;
+    font-family: arial;
+    border-top: 1px solid #f76262;
+    border-right: 1px solid #f76262; }
 
 body,
 html {
