@@ -80,7 +80,7 @@ def user_page(request, username):
 
         try:
             # Dont try to pull an existing unfollow for an opted out user
-            if not request.user.is_opted_out:
+            if request.user.is_authenticated() and not request.user.is_opted_out:
                 existing_unfollow = Unfollow.objects.filter(
                     user = user,
                     unfollowed_by = request.user,
